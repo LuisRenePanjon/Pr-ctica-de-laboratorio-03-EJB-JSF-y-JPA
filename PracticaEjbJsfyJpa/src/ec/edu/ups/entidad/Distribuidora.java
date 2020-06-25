@@ -11,6 +11,8 @@ import javax.persistence.*;
 public class Distribuidora implements Serializable {
 
 	
+	//Falta agregar campo FK de bodega
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
