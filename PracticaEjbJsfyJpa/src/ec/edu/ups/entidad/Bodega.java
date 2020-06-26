@@ -12,7 +12,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+//Error
 public class Bodega implements Serializable {
 
 	
