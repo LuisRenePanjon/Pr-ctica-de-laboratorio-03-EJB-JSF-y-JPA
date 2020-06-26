@@ -1,6 +1,9 @@
 package ec.edu.ups.entidad;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -25,10 +28,25 @@ public class Distribuidora implements Serializable {
 	
 	private String ruc;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "distribuidora")
+	private Set<FacturaCabecera> listaFacturas = new HashSet<FacturaCabecera>(); 
+	
 	
 	public Distribuidora() {
 		super();
 	}
+	
+	
+
+
+	public Distribuidora(String nombre, String direccion, String ruc) {
+		super();
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.ruc = ruc;
+	}
+
+
 
 
 	public int getCodigo() {
@@ -70,6 +88,9 @@ public class Distribuidora implements Serializable {
 		this.ruc = ruc;
 	}
 
+	public void agregarFactura(FacturaCabecera facturaCabecera) {
+		this.listaFacturas.add(facturaCabecera);
+	}
 
 	@Override
 	public int hashCode() {

@@ -1,19 +1,15 @@
 package ec.edu.ups.entidad;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Bodega
+ * Entity implementation class for Entity: Producto
  *
  */
 @Entity
 
-public class Bodega implements Serializable {
+public class Producto implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -21,59 +17,44 @@ public class Bodega implements Serializable {
 	@Id
 	private int codigo;
 	private String nombre;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "bodega")
-	private Set<Ubicacion> ubicaciones = new HashSet<Ubicacion>();
+	private String categoria;
+	private double precio;
 	
-	
-
-	public Bodega() {
+	public Producto() {
 		super();
 	}
-
-
-
-	public Bodega(String nombre) {
-		super();
-		this.nombre = nombre;
-	}
-
-
 
 	public int getCodigo() {
 		return codigo;
 	}
 
-
-
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-
-	public Set<Ubicacion> getUbicaciones() {
-		return ubicaciones;
+	public String getCategoria() {
+		return categoria;
 	}
 
-
-
-	public void setUbicaciones(Set<Ubicacion> ubicaciones) {
-		this.ubicaciones = ubicaciones;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
+	public double getPrecio() {
+		return precio;
+	}
 
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
 
 	@Override
 	public int hashCode() {
@@ -83,8 +64,6 @@ public class Bodega implements Serializable {
 		return result;
 	}
 
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -93,13 +72,14 @@ public class Bodega implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Bodega other = (Bodega) obj;
+		Producto other = (Producto) obj;
 		if (codigo != other.codigo)
 			return false;
 		return true;
 	}
 	
 	
-   
 	
+	
+   
 }
