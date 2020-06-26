@@ -32,6 +32,9 @@ public class Usuario implements Serializable {
 	@JoinColumn
 	private Rol rol;
 	
+	
+	private FacturaCabecera fCabecera;
+	
 	public Usuario() {
 		super();
 	}
