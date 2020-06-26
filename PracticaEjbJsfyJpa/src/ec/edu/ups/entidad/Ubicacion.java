@@ -21,6 +21,7 @@ public class Ubicacion implements Serializable {
 	private String provincia;
 	private String ciudad;
 	@ManyToOne
+	@JoinColumn
 	private Bodega bodega;
 	
 	
