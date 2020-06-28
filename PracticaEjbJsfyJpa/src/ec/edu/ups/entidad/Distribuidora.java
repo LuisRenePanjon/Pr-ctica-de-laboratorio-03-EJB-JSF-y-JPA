@@ -13,31 +13,29 @@ import javax.persistence.*;
 @Entity
 public class Distribuidora implements Serializable {
 
-	
-	//Falta agregar campo FK de bodega
-	
+	// Falta agregar campo FK de bodega
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
-	
+
 	private String nombre;
-	
+
 	private String direccion;
-	
+
 	private String ruc;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "distribuidora")
-	private Set<FacturaCabecera> listaFacturas = new HashSet<FacturaCabecera>(); 
-	
-	
+	private Set<FacturaCabecera> listaFacturas = new HashSet<FacturaCabecera>();
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "distribuidora")
+	private Set<Bodega> listaBodegas = new HashSet<Bodega>();
+
 	public Distribuidora() {
 		super();
 	}
-	
-	
-
 
 	public Distribuidora(String nombre, String direccion, String ruc) {
 		super();
@@ -46,50 +44,60 @@ public class Distribuidora implements Serializable {
 		this.ruc = ruc;
 	}
 
-
-
-
 	public int getCodigo() {
 		return codigo;
 	}
-
 
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
-
 	public String getNombre() {
 		return nombre;
 	}
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
 	public String getDireccion() {
 		return direccion;
 	}
-
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
-
 	public String getRuc() {
 		return ruc;
 	}
-
 
 	public void setRuc(String ruc) {
 		this.ruc = ruc;
 	}
 
+	public void setListaFacturas(Set<FacturaCabecera> listaFacturas) {
+		this.listaFacturas = listaFacturas;
+	}
+
+	public Set<Bodega> getListaBodegas() {
+		return listaBodegas;
+	}
+
+	public Set<FacturaCabecera> getListaFacturas() {
+		return listaFacturas;
+	}
+
+	public void setListaBodegas(Set<Bodega> listaBodegas) {
+		this.listaBodegas = listaBodegas;
+	}
+
 	public void agregarFactura(FacturaCabecera facturaCabecera) {
 		this.listaFacturas.add(facturaCabecera);
+	}
+
+	public void agregarBodega(Bodega bodega) {
+		this.listaBodegas.add(bodega);
 	}
 
 	@Override
@@ -99,7 +107,6 @@ public class Distribuidora implements Serializable {
 		result = prime * result + codigo;
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -115,13 +122,10 @@ public class Distribuidora implements Serializable {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Distribuidora [codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + ", ruc=" + ruc
 				+ "]";
 	}
-	
-	
-   
+
 }

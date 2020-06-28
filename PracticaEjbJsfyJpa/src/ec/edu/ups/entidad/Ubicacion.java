@@ -1,6 +1,9 @@
 package ec.edu.ups.entidad;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -11,30 +14,26 @@ import javax.persistence.*;
 
 public class Ubicacion implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	private String pais;
 	private String provincia;
 	private String ciudad;
-	@ManyToOne
-	@JoinColumn
-	private Bodega bodega;
-	
-	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ubicacion")
+	private Set<Bodega> bodegas = new HashSet<Bodega>();
+
+	public Ubicacion() {
+		super();
+	}
 
 	public Ubicacion(String pais, String provincia, String ciudad) {
 		super();
 		this.pais = pais;
 		this.provincia = provincia;
 		this.ciudad = ciudad;
-	}
-
-	public Ubicacion() {
-		super();
 	}
 
 	public int getCodigo() {
@@ -69,6 +68,18 @@ public class Ubicacion implements Serializable {
 		this.ciudad = ciudad;
 	}
 
+	public Set<Bodega> getBodegas() {
+		return bodegas;
+	}
+
+	public void setBodegas(Set<Bodega> bodegas) {
+		this.bodegas = bodegas;
+	}
+
+	public void agregarBodega(Bodega bodega) {
+		this.bodegas.add(bodega);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -91,7 +102,10 @@ public class Ubicacion implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Ubicacion [codigo=" + codigo + ", pais=" + pais + ", provincia=" + provincia + ", ciudad=" + ciudad
+				+ "]";
+	}
 
-	
-   
 }
