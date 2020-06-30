@@ -100,6 +100,29 @@ public class UsuarioBean implements Serializable{
 
 	//CRUD
 	public String addCliente() {
+		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,this.cliente));
+		list = ejbUsuarioFacade.findAll();
 		return null;
 	}
+	
+	public String delete(Usuario usuario) {
+		ejbUsuarioFacade.remove(usuario);
+		list = ejbUsuarioFacade.findAll();
+		return null;
+	}
+	
+	public String edit (Usuario usuario) {
+		usuario.setEditable(true);
+		return null;
+	}
+	
+	public String save (Usuario usuario) {
+		ejbUsuarioFacade.edit(usuario);
+		usuario.setEditable(false);
+		return null;
+	}
+	
+	
+	
+	
 }
