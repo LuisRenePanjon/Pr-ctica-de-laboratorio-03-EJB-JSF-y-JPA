@@ -26,6 +26,9 @@ public class Rol implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
 	private Set<Usuario> listaUsuarios = new  HashSet<Usuario>();
 	
+	@Transient
+    private boolean editable;
+	
 	public Rol() {
 		super();
 	}
@@ -34,6 +37,13 @@ public class Rol implements Serializable {
 	public Rol(int codigo, String cargo) {
 		super();
 		this.codigo = codigo;
+		this.cargo = cargo;
+	}
+
+	
+
+	public Rol(String cargo) {
+		super();
 		this.cargo = cargo;
 	}
 
@@ -65,6 +75,28 @@ public class Rol implements Serializable {
 		this.listaUsuarios.remove(usuario);
 	}
 	
+	
+	
+	public Set<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
+
+
+	public void setListaUsuarios(Set<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

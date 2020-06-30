@@ -39,6 +39,9 @@ public class Usuario implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	private Set<FacturaCabecera> listaFacturas = new  HashSet<FacturaCabecera>();
 	
+	@Transient
+    private boolean editable;
+	
 	public Usuario() {
 		super();
 	}
@@ -54,6 +57,17 @@ public class Usuario implements Serializable {
 	}
 
 	
+
+	public Usuario(String nombre, String apellido, String cedula, String correo, String contrasena, Rol rol) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.cedula = cedula;
+		this.correo = correo;
+		this.contrasena = contrasena;
+		this.rol = rol;
+	}
+
 
 	public int getCodigo() {
 		return codigo;
@@ -141,6 +155,18 @@ public class Usuario implements Serializable {
 	public void removeFactura(FacturaCabecera Fcabecera) {
 		this.listaFacturas.remove(Fcabecera);
 	}
+	
+	
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 
 	@Override
 	public int hashCode() {
