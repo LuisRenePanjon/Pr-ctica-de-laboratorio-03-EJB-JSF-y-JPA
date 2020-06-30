@@ -20,8 +20,7 @@ public class FacturaCabecera implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
-	
-	private Usuario usuario;
+
 	private Date fecha;
 	private String estado;
 	
@@ -30,6 +29,10 @@ public class FacturaCabecera implements Serializable  {
 	private Distribuidora distribuidora;
 	
 
+	@ManyToOne
+	@JoinColumn
+	private Usuario usuario;
+	
 	public FacturaCabecera() {
 		// TODO Auto-generated constructor stub
 	}

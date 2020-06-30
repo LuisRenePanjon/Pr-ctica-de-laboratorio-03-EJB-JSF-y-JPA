@@ -1,6 +1,9 @@
 package ec.edu.ups.entidad;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -33,7 +36,8 @@ public class Usuario implements Serializable {
 	private Rol rol;
 	
 	
-	private FacturaCabecera fCabecera;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+	private Set<FacturaCabecera> listaFacturas = new  HashSet<FacturaCabecera>();
 	
 	public Usuario() {
 		super();
@@ -49,6 +53,94 @@ public class Usuario implements Serializable {
 		this.contrasena = contrasena;
 	}
 
+	
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getApellido() {
+		return apellido;
+	}
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+
+	public String getCedula() {
+		return cedula;
+	}
+
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+
+	public String getCorreo() {
+		return correo;
+	}
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+
+	public Rol getRol() {
+		return rol;
+	}
+
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+
+	public Set<FacturaCabecera> getListaFacturas() {
+		return listaFacturas;
+	}
+
+
+	public void setListaFacturas(Set<FacturaCabecera> listaFacturas) {
+		this.listaFacturas = listaFacturas;
+	}
+
+	public void addFactura(FacturaCabecera Fcabecera) {
+		this.listaFacturas.add(Fcabecera);
+	}
+	
+	public void removeFactura(FacturaCabecera Fcabecera) {
+		this.listaFacturas.remove(Fcabecera);
+	}
 
 	@Override
 	public int hashCode() {
