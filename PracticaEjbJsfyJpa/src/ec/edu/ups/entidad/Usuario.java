@@ -10,8 +10,10 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Usuario
  *
  */
-@Entity
+@NamedQuery(name = "getByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo AND u.contrasena = :pass")
 
+
+@Entity
 public class Usuario implements Serializable {
 
 	
@@ -25,10 +27,11 @@ public class Usuario implements Serializable {
 	
 	private String apellido;
 	
+	@Column(unique=true)
 	private String cedula;
 	
 	private String correo;
-	
+	@Column(unique=true)
 	private String contrasena;
 	
 	@ManyToOne

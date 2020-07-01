@@ -10,6 +10,9 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Rol
  *
  */
+@NamedQuery(name = "getByCargo", query = "SELECT r FROM Rol r WHERE r.cargo = :cargo")
+
+
 @Entity
 
 public class Rol implements Serializable {
