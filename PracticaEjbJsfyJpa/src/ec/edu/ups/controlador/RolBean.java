@@ -8,9 +8,6 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
-
-import com.sun.research.ws.wadl.Request;
 
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.entidad.Rol;
