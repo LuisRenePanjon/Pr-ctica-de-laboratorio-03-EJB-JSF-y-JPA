@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class FacturaCabecera implements Serializable  {
@@ -33,6 +34,10 @@ public class FacturaCabecera implements Serializable  {
 	@JoinColumn
 	private Usuario usuario;
 	
+	@Transient
+	private boolean editable;
+	
+	
 	public FacturaCabecera() {
 		// TODO Auto-generated constructor stub
 	}
@@ -40,7 +45,6 @@ public class FacturaCabecera implements Serializable  {
 	
 
 	public FacturaCabecera(Usuario usuario, Date fecha, String estado, Distribuidora distribuidora) {
-		super();
 		this.usuario = usuario;
 		this.fecha = fecha;
 		this.estado = estado;
@@ -78,6 +82,28 @@ public class FacturaCabecera implements Serializable  {
 		this.estado = estado;
 	}
 
+	
+	public Distribuidora getDistribuidora() {
+		return distribuidora;
+	}
+
+
+
+	public void setDistribuidora(Distribuidora distribuidora) {
+		this.distribuidora = distribuidora;
+	}
+
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 
 
 	@Override
@@ -85,6 +111,7 @@ public class FacturaCabecera implements Serializable  {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + codigo;
+		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -100,6 +127,11 @@ public class FacturaCabecera implements Serializable  {
 			return false;
 		FacturaCabecera other = (FacturaCabecera) obj;
 		if (codigo != other.codigo)
+			return false;
+		if (usuario == null) {
+			if (other.usuario != null)
+				return false;
+		} else if (!usuario.equals(other.usuario))
 			return false;
 		return true;
 	}
