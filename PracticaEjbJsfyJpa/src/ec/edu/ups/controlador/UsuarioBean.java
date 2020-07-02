@@ -144,6 +144,17 @@ public class UsuarioBean implements Serializable{
 		return null;
 	}
 	
+	
+	public String iniciarSesion() {
+		Usuario usuario = ejbUsuarioFacade.readCorreo(this.correo, this.passw);
+		if(usuario != null) {
+			if(usuario.getRol().getCodigo()==2) {
+				return "crearEmpleados";
+			}
+		}
+		return null;
+	}
+	
 	public String delete(Usuario usuario) {
 		ejbUsuarioFacade.remove(usuario);
 		list = ejbUsuarioFacade.findAll();
