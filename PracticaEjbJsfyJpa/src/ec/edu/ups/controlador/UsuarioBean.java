@@ -9,6 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.annotation.FacesConfig;
 import javax.inject.Named;
 
+import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
 import ec.edu.ups.entidad.Rol;
 import ec.edu.ups.entidad.Usuario;
@@ -26,16 +27,18 @@ public class UsuarioBean implements Serializable{
 	
 	@EJB
 	private UsuarioFacade ejbUsuarioFacade;
+	@EJB
+	private RolFacade ejbRolFacade;
 	private List<Usuario> list; 
+	private List<Usuario> listEmpleados;
+	private List<Usuario> listClientes;
 	private String nombre;
 	private String apellido;
 	private String cedula;
 	private String correo;
 	private String passw;
 	
-	Rol cliente = new Rol("cliente");
-	Rol empleado = new Rol("empleado");
-	Rol admin = new Rol ("admin");
+	
 	
 	public UsuarioBean() {
 		// TODO Auto-generated constructor stub
@@ -44,6 +47,8 @@ public class UsuarioBean implements Serializable{
 	@PostConstruct
 	public void init() {
 		list = ejbUsuarioFacade.findAll();
+		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
+		listClientes = ejbUsuarioFacade.listarClientes(3);
 	}
 
 	
@@ -98,9 +103,43 @@ public class UsuarioBean implements Serializable{
 		this.list=list;
 	}
 
+	
+	public Usuario[] getListEmpleados() {
+		return listEmpleados.toArray(new Usuario[0]);
+	}
+
+	public void setListEmpleados(List<Usuario> listEmpleados) {
+		this.listEmpleados = listEmpleados;
+	}
+
+	public Usuario[] getListClientes() {
+		return listClientes.toArray(new Usuario[0]);
+	}
+
+	public void setListClientes(List<Usuario> listClientes) {
+		this.listClientes = listClientes;
+	}
+
 	//CRUD
 	public String addCliente() {
-		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,this.cliente));
+		
+		Rol cliente=ejbRolFacade.readRol("cliente");
+		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,cliente));
+		list = ejbUsuarioFacade.findAll();
+		return null;
+	}
+	
+	
+	public String addEmpleado() {
+		Rol empleado=ejbRolFacade.readRol("empleado");
+		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,empleado));
+		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
+		return null;
+	}
+	
+	public String addAdmin() {
+		Rol admin=ejbRolFacade.readRol("admin");
+		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,admin));
 		list = ejbUsuarioFacade.findAll();
 		return null;
 	}
@@ -110,6 +149,14 @@ public class UsuarioBean implements Serializable{
 		list = ejbUsuarioFacade.findAll();
 		return null;
 	}
+	
+	public String deleteEmpleado(Usuario usuario) {
+		ejbUsuarioFacade.remove(usuario);
+		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
+		return null;
+	}
+	
+	
 	
 	public String edit (Usuario usuario) {
 		usuario.setEditable(true);
