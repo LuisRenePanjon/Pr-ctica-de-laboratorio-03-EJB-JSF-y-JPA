@@ -47,8 +47,8 @@ public class UsuarioBean implements Serializable{
 	@PostConstruct
 	public void init() {
 		list = ejbUsuarioFacade.findAll();
-		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
-		listClientes = ejbUsuarioFacade.listarEmpleados(3);
+		listEmpleados = ejbUsuarioFacade.listarPorCargo(2);
+		listClientes = ejbUsuarioFacade.listarPorCargo(3);
 	}
 
 	
@@ -125,7 +125,7 @@ public class UsuarioBean implements Serializable{
 		
 		Rol cliente=ejbRolFacade.readRol("cliente");
 		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,cliente));
-		listClientes = ejbUsuarioFacade.listarEmpleados(3);
+		listClientes = ejbUsuarioFacade.listarPorCargo(3);
 		return null;
 	}
 	
@@ -133,14 +133,14 @@ public class UsuarioBean implements Serializable{
 	public String addEmpleado() {
 		Rol empleado=ejbRolFacade.readRol("empleado");
 		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,empleado));
-		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
+		listEmpleados = ejbUsuarioFacade.listarPorCargo(2);
 		return null;
 	}
 	
 	public String addAdmin() {
 		Rol admin=ejbRolFacade.readRol("admin");
 		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,admin));
-		list = ejbUsuarioFacade.findAll();
+		listClientes = ejbUsuarioFacade.listarPorCargo(1);
 		return null;
 	}
 	
@@ -163,13 +163,13 @@ public class UsuarioBean implements Serializable{
 	
 	public String deleteEmpleado(Usuario usuario) {
 		ejbUsuarioFacade.remove(usuario);
-		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
+		listEmpleados = ejbUsuarioFacade.listarPorCargo(2);
 		return null;
 	}
 	
 	public String deleteCliente(Usuario usuario) {
 		ejbUsuarioFacade.remove(usuario);
-		listClientes = ejbUsuarioFacade.listarEmpleados(3);
+		listClientes = ejbUsuarioFacade.listarPorCargo(3);
 		return null;
 	}
 	

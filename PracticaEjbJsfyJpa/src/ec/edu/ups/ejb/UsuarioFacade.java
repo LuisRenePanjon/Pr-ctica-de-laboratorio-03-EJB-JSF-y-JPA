@@ -39,26 +39,14 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
 		return respuesta;
 	}
 	
-	public List<Usuario> listarEmpleados(int cargo){
-		Query query = em.createNamedQuery("listarEmpleados");
+	public List<Usuario> listarPorCargo(int cargo){
+		Query query = em.createNamedQuery("listarPorCargo");
 		query.setParameter("cargo", cargo);
 		List<Usuario> respuesta = (List<Usuario>) query.getResultList();
 		return respuesta;
 	}
 	
-	public List<Usuario> listarClientes(int cargo){
-		Query query = em.createNamedQuery("listarClientes");
-		query.setParameter("cargo", cargo);
-		List<Usuario> respuesta = (List<Usuario>) query.getResultList();
-		return respuesta;
-	}
 	
-	public List<Usuario> listarAdmins(int cargo){
-		Query query = em.createNamedQuery("listarAdmins");
-		query.setParameter("cargo", cargo);
-		List<Usuario> respuesta = (List<Usuario>) query.getResultList();
-		return respuesta;
-	}
 	
 
 }
