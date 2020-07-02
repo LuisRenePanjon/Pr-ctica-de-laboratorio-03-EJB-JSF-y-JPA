@@ -42,6 +42,9 @@
 				<f:facet name="header">Estado</f:facet>#{c.estado}
 			</h:column>
 			<h:column>
+				<f:facet name="header">Cliente</f:facet>#{c.usuario.codigo}
+			</h:column>
+			<h:column>
 				<f:facet name="header">Estado</f:facet>
 				<h:inputText value="#{c.estado}" rendered="#{c.editable}" />
 				<h:outputText value="#{c.estado}" rendered="#{not c.editable}" />
@@ -72,28 +75,21 @@
 	
 	
 	<h:form>
-	
-		<ul>
-			<li>Datos Usuario:<h:inputText size="10" var="a"/></li>
-		</ul>
-		
-		<h:commandButton value="Buscar" action="#{facturaCabeceraBean.buscar(a)}" />
-		
-		<h:dataTable value="#{facturaCabeceraBean.facturasNulas}" var="f" styleClass="tabla"
+		<li>Datos Usuario:<h:inputText  value="#{usuarioBean.cedula}"/></li>
+		<h:commandButton value="Buscar" action="#{usuarioBean.findFacturaByUN()}"  />
+		<li><h:outputText value="#{usuarioBean.cedula}" /></li>
+	</h:form>
+
+	<h:dataTable value="#{usuarioBean.listFacturasCliente}" var="f" styleClass="tabla"
 			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
 			<h:column>
 				<f:facet name="header">Estado</f:facet>#{f.estado}
 			</h:column>
 		
-		</h:dataTable>
-		
-		
-		
-	</h:form>
-	
-
+	</h:dataTable>
 	
 	
 	
 </h:body>
+
 </html>

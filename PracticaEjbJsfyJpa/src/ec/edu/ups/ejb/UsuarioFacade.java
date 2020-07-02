@@ -47,6 +47,21 @@ public class UsuarioFacade extends AbstractFacade<Usuario>{
 	}
 	
 	
+	public Usuario buscarClienteByCC(String dato) {
+		
+	Query query = em.createNamedQuery("getByCedulaoCorreo");
+	query.setParameter("cedula", dato);
+	query.setParameter("correo", dato);
+	List usuario = query.getResultList();
+	Usuario respuestaU = null;
+	if(!usuario.isEmpty()){
+		respuestaU = (Usuario) usuario.get(0);
+	}
+		return respuestaU;
+	
+	}
+
+	
 	
 
 }

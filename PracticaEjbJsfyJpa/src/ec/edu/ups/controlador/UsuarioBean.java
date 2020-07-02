@@ -2,6 +2,7 @@ package ec.edu.ups.controlador;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -11,6 +12,7 @@ import javax.inject.Named;
 
 import ec.edu.ups.ejb.RolFacade;
 import ec.edu.ups.ejb.UsuarioFacade;
+import ec.edu.ups.entidad.FacturaCabecera;
 import ec.edu.ups.entidad.Rol;
 import ec.edu.ups.entidad.Usuario;
 
@@ -37,6 +39,8 @@ public class UsuarioBean implements Serializable{
 	private String cedula;
 	private String correo;
 	private String passw;
+	
+	private Set<FacturaCabecera> listFacturasCliente;
 	
 	
 	
@@ -120,6 +124,18 @@ public class UsuarioBean implements Serializable{
 		this.listClientes = listClientes;
 	}
 
+	
+	
+	
+	
+	public Set<FacturaCabecera> getListFacturasCliente() {
+		return listFacturasCliente;
+	}
+
+	public void setListFacturasCliente(Set<FacturaCabecera> listFacturasCliente) {
+		this.listFacturasCliente = listFacturasCliente;
+	}
+
 	//CRUD
 	public String addCliente() {
 		
@@ -183,6 +199,30 @@ public class UsuarioBean implements Serializable{
 	public String save (Usuario usuario) {
 		ejbUsuarioFacade.edit(usuario);
 		usuario.setEditable(false);
+		return null;
+	}
+	
+	
+	
+	public String findFacturaByUN() {
+		
+		System.out.println("----------Busca al usuario------------");
+		
+		Usuario usu = ejbUsuarioFacade.buscarClienteByCC(this.cedula);
+		System.out.println(usu.toString());
+		
+		
+		Set<FacturaCabecera> listauxiliar = usu.getListaFacturas();
+		
+		System.out.println(listauxiliar.size());
+		
+		for (FacturaCabecera obj : listauxiliar) {
+			System.out.println(obj);
+		}
+		
+		this.listFacturasCliente = listauxiliar;
+		
+		
 		return null;
 	}
 	
