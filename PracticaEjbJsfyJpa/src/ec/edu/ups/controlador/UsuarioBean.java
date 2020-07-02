@@ -48,7 +48,7 @@ public class UsuarioBean implements Serializable{
 	public void init() {
 		list = ejbUsuarioFacade.findAll();
 		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
-		listClientes = ejbUsuarioFacade.listarClientes(3);
+		listClientes = ejbUsuarioFacade.listarEmpleados(3);
 	}
 
 	
@@ -125,7 +125,7 @@ public class UsuarioBean implements Serializable{
 		
 		Rol cliente=ejbRolFacade.readRol("cliente");
 		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,cliente));
-		list = ejbUsuarioFacade.findAll();
+		listClientes = ejbUsuarioFacade.listarEmpleados(3);
 		return null;
 	}
 	
@@ -164,6 +164,12 @@ public class UsuarioBean implements Serializable{
 	public String deleteEmpleado(Usuario usuario) {
 		ejbUsuarioFacade.remove(usuario);
 		listEmpleados = ejbUsuarioFacade.listarEmpleados(2);
+		return null;
+	}
+	
+	public String deleteCliente(Usuario usuario) {
+		ejbUsuarioFacade.remove(usuario);
+		listClientes = ejbUsuarioFacade.listarEmpleados(3);
 		return null;
 	}
 	
