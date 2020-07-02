@@ -33,14 +33,22 @@ public class DistribuidoraBean implements Serializable{
 	
 	private Set<Bodega> listaDeBodegas;
 	
+	private List<Distribuidora> list;
 	
+	private String nombre;
+	private String direccion;
+	private String ruc;
 	
 	
 	public DistribuidoraBean() {
 		
 	}
 	
-	
+	@PostConstruct
+	private void init() {
+		// TODO Auto-generated method stub
+		list = distribuidoraFacade.findAll();
+	}
 	
 	
 	public Distribuidora getDistribuidora() {
@@ -98,7 +106,29 @@ public class DistribuidoraBean implements Serializable{
 	
 	
 	
+	public String add() {
+		distribuidoraFacade.create(new Distribuidora(this.nombre, this.direccion, this.ruc));
+		list = distribuidoraFacade.findAll();
+		return null;
+	}
 	
+	public String delete(Distribuidora d) {
+		distribuidoraFacade.remove(d);
+		list = distribuidoraFacade.findAll();
+		return null;
+	}
+
+	public String edit(Distribuidora d) {
+		d.setEditable(true);
+		return null;
+	}
+
+	public String save(Distribuidora d) {
+		distribuidoraFacade.edit(d);
+		d.setEditable(false);
+		return null;
+	}
+
 	
 	
 

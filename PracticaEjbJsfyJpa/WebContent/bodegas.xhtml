@@ -6,51 +6,69 @@
 <h:head>
 	<title>Bodegas</title>
 	<style>
-		.tabla {
-			border-collapse: collapse;
-		}
-		
-		.cabeceraTabla {
-			text-align: center;
-			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 1px solid #BBBBBB;
-			padding: 8px;
-		}
-		
-		.filaPar {
-			text-align: center;
-			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 1px solid #BBBBBB;
-		}
-		
-		.filaImpar {
-			text-align: center;
-			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 1px solid #BBBBBB;
-		}
-	</style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+</style>
 </h:head>
 <h:body>
 	<h3>Gestión de Bodegas</h3>
-		<h:form>
-			<h:dataTable value="#{bodegaBean.list}" var= "b" styleClass="tabla"
-				headerClass="cabeceraTabla" rowClasses="filaPar, filaImpar">
-				<h:column>
-					<f:facet name="header">Codigo</f:facet>#{b.codigo}</h:column>
-				<h:column>
-					<f:facet name="header">Nombre</f:facet>
-					<h:outputText value="#{b.nombre}"/>
-				</h:column>
-				<h:column>
+	<h:form>
+		<h:dataTable value="#{bodegaBean.list}" var="b" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar, filaImpar">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{b.codigo}</h:column>
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:inputText value="#{b.nombre}" size="10" rendered="#{b.editable}" />
+				<h:outputText value="#{b.nombre}" rendered="#{not b.editable}" />
+			</h:column>
+			<h:column>
 				<f:facet name="header">Accion</f:facet>
 				<h:commandLink value="Delete" action="#{bodegaBean.delete(b)}" />
 			</h:column>
-			</h:dataTable>
-			<ul>
-				<li>Nombre:<h:inputText size="10" value="#{bodegaBean.nombre}"/></li>
-			</ul>
-			<h:commandButton value="Add" action="#{bodegaBean.add}" />
-		</h:form>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Edit" action="#{bodegaBean.edit(b)}"
+					rendered="#{not b.editable}" />
+				<h:commandLink value="Save" action="#{bodegaBean.save(b)}"
+					rendered="#{b.editable}" />
+			</h:column>
+		</h:dataTable>
+		<ul>
+			<li>Nombre:<h:inputText size="10" value="#{bodegaBean.nombre}" /></li>
+		</ul>
+		<h3>Selecciona la ubicacion</h3>
+		<p>Ciudad:</p>
+		<h:selectOneMenu value="#{bodegaBean.ciudad}">
+			<f:selectItems value="#{bodegaBean.ubicaciones}" var="list1"
+				itemValue="#{list1.ciudad}" itemLabel="#{list1.ciudad}" />
+		</h:selectOneMenu>
+		<h:selectOneMenu value="#{bodegaBean.nombreD}">
+			<f:selectItems value="#{bodegaBean.distribuidoras}" var="list1"
+				itemValue="#{list1.nombre}" itemLabel="#{list1.nombre}" />
+		</h:selectOneMenu>
+
+		<h:commandButton value="Add" action="#{bodegaBean.addBodega()}" />
+	</h:form>
 </h:body>
 </html>
-			

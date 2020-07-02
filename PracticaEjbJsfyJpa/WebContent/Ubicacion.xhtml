@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Ubicacion</title>
+	<style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+</style>
+</h:head>
+<h:body>
+	<h3>Gestión de Ubicaciones</h3>
+	<h:form>
+		<h:dataTable value="#{ubicacionBean.list}" var="u"
+			styleClass="tabla" headerClass="cabeceraTabla"
+			rowClasses="filaPar, filaImpar">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{u.codigo}</h:column>
+			<h:column>
+				<f:facet name="header">Pais</f:facet>
+				<h:inputText value="#{u.pais}" size="10" rendered="#{u.editable}" />
+				<h:outputText value="#{u.pais}" rendered="#{not u.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Provincia</f:facet>
+				<h:inputText value="#{u.provincia}" size="10" rendered="#{u.editable}" />
+				<h:outputText value="#{u.provincia}" rendered="#{not u.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ciudad</f:facet>
+				<h:inputText value="#{u.ciudad}" size="10" rendered="#{u.editable}" />
+				<h:outputText value="#{u.ciudad}" rendered="#{not u.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Delete" action="#{ubicacionBean.delete(u)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Edit" action="#{ubicacionBean.edit(u)}"
+					rendered="#{not u.editable}" />
+				<h:commandLink value="Save" action="#{ubicacionBean.save(u)}"
+					rendered="#{u.editable}" />
+			</h:column>
+		</h:dataTable>
+		<ul>
+			<li>Pais:<h:inputText size="10" value="#{ubicacionBean.pais}" /></li>
+		</ul>
+		<ul>
+			<li>Provincia:<h:inputText size="10" value="#{ubicacionBean.provincia}" /></li>
+		</ul>
+		<ul>
+			<li>Ciudad:<h:inputText size="10" value="#{ubicacionBean.ciudad}" /></li>
+		</ul>
+		
+		<h:commandButton value="Add" action="#{ubicacionBean.add}" />
+	</h:form>
+</h:body>
+</html>

@@ -10,6 +10,8 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Distribuidora
  *
  */
+@NamedQuery(name = "getByDistribuidora", query = "SELECT d FROM Distribuidora d WHERE d.nombre =:nombre")
+
 @Entity
 public class Distribuidora implements Serializable {
 
@@ -32,6 +34,9 @@ public class Distribuidora implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "distribuidora")
 	private Set<Bodega> listaBodegas = new HashSet<Bodega>();
+	
+	@Transient
+	private boolean editable;
 
 	public Distribuidora() {
 		super();
@@ -42,6 +47,23 @@ public class Distribuidora implements Serializable {
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.ruc = ruc;
+	}
+	
+	public Distribuidora(String nombre, String direccion, String ruc, boolean editable) {
+		super();
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.ruc = ruc;
+		this.editable = editable;
+	}
+	
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	public int getCodigo() {

@@ -30,6 +30,9 @@ public class Bodega implements Serializable {
 	@ManyToOne
 	@JoinColumn
 	private Stock stock;
+	
+	@Transient
+	private boolean editable;
 
 	public Bodega() {
 		super();
@@ -42,10 +45,35 @@ public class Bodega implements Serializable {
 		this.distribuidora = distribuidora;
 		this.stock = stock;
 	}
+	
+	
+
+	public Bodega(String nombre, Ubicacion ubicacion, Distribuidora distribuidora, Stock stock, boolean editable) {
+		super();
+		this.nombre = nombre;
+		this.ubicacion = ubicacion;
+		this.distribuidora = distribuidora;
+		this.stock = stock;
+		this.editable = editable;
+	}
 
 	public Bodega(String nombre) {
 		super();
 		this.nombre = nombre;
+	}
+	
+
+	public Bodega(String nombre, Ubicacion ubicacion, Distribuidora distribuidora) {
+		super();
+		this.nombre = nombre;
+		this.ubicacion = ubicacion;
+		this.distribuidora = distribuidora;
+	}
+
+	public Bodega(String nombre, Ubicacion ubicacion) {
+		super();
+		this.nombre = nombre;
+		this.ubicacion = ubicacion;
 	}
 
 	public int getCodigo() {
@@ -86,6 +114,16 @@ public class Bodega implements Serializable {
 
 	public void setStock(Stock stock) {
 		this.stock = stock;
+	}
+	
+	
+
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 
 	@Override

@@ -10,6 +10,8 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Ubicacion
  *
  */
+@NamedQuery(name = "getByCiudad", query = "SELECT u FROM Ubicacion u WHERE u.ciudad =:ciudad")
+
 @Entity
 
 public class Ubicacion implements Serializable {
@@ -24,6 +26,17 @@ public class Ubicacion implements Serializable {
 	private String ciudad;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ubicacion")
 	private Set<Bodega> bodegas = new HashSet<Bodega>();
+
+	@Transient
+	private boolean editable;
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 
 	public Ubicacion() {
 		super();

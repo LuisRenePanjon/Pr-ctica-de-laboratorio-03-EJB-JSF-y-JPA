@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Distribuidora</title>
+	<style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+</style>
+</h:head>
+<h:body>
+	<h3>Gestión de Distribuidoras</h3>
+	<h:form>
+		<h:dataTable value="#{distribuidoraBean.list}" var="d"
+			styleClass="tabla" headerClass="cabeceraTabla"
+			rowClasses="filaPar, filaImpar">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{d.codigo}</h:column>
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:inputText value="#{d.nombre}" size="10" rendered="#{d.editable}" />
+				<h:outputText value="#{d.nombre}" rendered="#{not d.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Direccion</f:facet>
+				<h:inputText value="#{d.direccion}" size="10" rendered="#{d.editable}" />
+				<h:outputText value="#{d.direccion}" rendered="#{not d.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ruc</f:facet>
+				<h:inputText value="#{d.ruc}" size="10" rendered="#{d.editable}" />
+				<h:outputText value="#{d.ruc}" rendered="#{not d.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Delete" action="#{distribuidoraBean.delete(d)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink value="Edit" action="#{distribuidoraBean.edit(d)}"
+					rendered="#{not d.editable}" />
+				<h:commandLink value="Save" action="#{distribuidoraBean.save(d)}"
+					rendered="#{d.editable}" />
+			</h:column>
+		</h:dataTable>
+		<ul>
+			<li>Nombre:<h:inputText size="10" value="#{distribuidoraBean.nombre}" /></li>
+		</ul>
+		<ul>
+			<li>Direeccion:<h:inputText size="10" value="#{distribuidoraBean.direccion}" /></li>
+		</ul>
+		<ul>
+			<li>Ruc<h:inputText size="10" value="#{distribuidoraBean.ruc}" /></li>
+		</ul>
+		<h:commandButton value="Add" action="#{distribuidoraBean.add}" />
+	</h:form>
+</h:body>
+</html>
