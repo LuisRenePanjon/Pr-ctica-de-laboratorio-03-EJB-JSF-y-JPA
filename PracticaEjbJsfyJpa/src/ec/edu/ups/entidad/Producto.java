@@ -11,17 +11,27 @@ import javax.persistence.*;
 
 public class Producto implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	private String nombre;
 	private String categoria;
 	private double precio;
-	
+
+	@Transient
+	private boolean editable;
+
 	public Producto() {
 		super();
+	}
+
+	public Producto(String nombre, String categoria, double precio) {
+		super();
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.precio = precio;
 	}
 
 	public int getCodigo() {
@@ -64,6 +74,14 @@ public class Producto implements Serializable {
 		return result;
 	}
 
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,9 +95,5 @@ public class Producto implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-   
+
 }

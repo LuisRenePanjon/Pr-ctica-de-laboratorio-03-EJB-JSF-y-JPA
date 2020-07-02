@@ -10,6 +10,8 @@
 		<class>ec.edu.ups.entidad.FacturaCabecera</class>
 		<class>ec.edu.ups.entidad.FacturaDetalle</class>
 		<class>ec.edu.ups.entidad.Pedido</class>
+		<class>ec.edu.ups.entidad.Producto</class>
+		<class>ec.edu.ups.entidad.Stock</class>
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 		</properties>
