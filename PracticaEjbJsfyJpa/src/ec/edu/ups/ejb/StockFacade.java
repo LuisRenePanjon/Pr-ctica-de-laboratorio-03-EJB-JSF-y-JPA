@@ -10,6 +10,8 @@ import ec.edu.ups.entidad.Stock;
 public class StockFacade extends AbstractFacade<Stock> {
 
 	
+	
+	
 	@PersistenceContext(unitName = "PracticaEjbJsfyJpa")
 	private EntityManager em;
 	

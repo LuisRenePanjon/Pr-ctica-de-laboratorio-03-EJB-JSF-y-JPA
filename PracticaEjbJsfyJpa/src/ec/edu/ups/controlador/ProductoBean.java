@@ -70,6 +70,8 @@ public class ProductoBean implements Serializable {
 		return precio;
 	}
 
+	
+	
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
