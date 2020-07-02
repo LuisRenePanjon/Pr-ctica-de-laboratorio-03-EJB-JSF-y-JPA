@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Facturas</title>
+	<style>
+		.tabla {
+			border-collapse: collapse;
+		}
+		
+		.cabeceraTabla {
+			text-align: center;
+			background: none repeat scroll 0 0 #E5E5E5;
+			border-bottom: 1px solid #BBBBBB;
+			padding: 8px;
+		}
+		
+		.filaPar {
+			text-align: center;
+			background: none repeat scroll 0 0 #FFFFFFF;
+			border-top: 1px solid #BBBBBB;
+		}
+		
+		.filaImpar {
+			text-align: center;
+			background: none repeat scroll 0 0 #F9F9F9;
+			border-top: 1px solid #BBBBBB;
+		}
+	</style>
+</h:head>
+<h:body>
+	<h3>GestiÃ³n de categorias</h3>
+	
+	
+	
+	<h:form>
+		<h:dataTable value="#{facturaCabeceraBean.facturas}" var="c" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+				<f:facet name="header">Estado</f:facet>#{c.estado}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				<h:inputText value="#{c.estado}" rendered="#{c.editable}" />
+				<h:outputText value="#{c.estado}" rendered="#{not c.editable}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+				<h:commandLink action="#{facturaCabeceraBean.edit(c)}" value="Edit" rendered="#{not c.editable}"/>
+				<h:commandLink action="#{facturaCabeceraBean.save(c)}" value="Save" rendered="#{c.editable}"/>
+				
+			</h:column>
+			
+		</h:dataTable>
+		
+	</h:form>
+	
+	<h:form>
+		<h:dataTable value="#{facturaCabeceraBean.facturasNulas}" var="f" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+				<f:facet name="header">Estado</f:facet>#{f.estado}
+			</h:column>
+		
+		</h:dataTable>
+		
+	</h:form>
+	
+	
+	
+	<h:form>
+	
+		<ul>
+			<li>Datos Usuario:<h:inputText size="10" var="a"/></li>
+		</ul>
+		
+		<h:commandButton value="Buscar" action="#{facturaCabeceraBean.buscar(a)}" />
+		
+		<h:dataTable value="#{facturaCabeceraBean.facturasNulas}" var="f" styleClass="tabla"
+			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+			<h:column>
+				<f:facet name="header">Estado</f:facet>#{f.estado}
+			</h:column>
+		
+		</h:dataTable>
+		
+		
+		
+	</h:form>
+	
+
+	
+	
+	
+</h:body>
+</html>

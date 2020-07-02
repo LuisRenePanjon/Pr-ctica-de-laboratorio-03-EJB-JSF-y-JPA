@@ -1,8 +1,11 @@
 package ec.edu.ups.ejb;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import ec.edu.ups.entidad.Rol;
 
@@ -22,4 +25,15 @@ public class RolFacade extends AbstractFacade<Rol>{
 		return em;
 	}
 
+	
+	public Rol readRol(String cargo) {
+		Query query = em.createNamedQuery("getByCargo");
+		query.setParameter("cargo", cargo);
+		List result = query.getResultList();
+		Rol respuesta = null;
+		if(!result.isEmpty()){
+			respuesta = (Rol)result.get(0);
+		}
+		return respuesta;
+	}
 }
