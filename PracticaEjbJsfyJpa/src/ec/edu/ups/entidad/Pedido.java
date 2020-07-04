@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pedido implements Serializable {
@@ -19,6 +20,7 @@ public class Pedido implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 
+	@OneToOne
 	private Stock stock;
 
 	private int cantidad;

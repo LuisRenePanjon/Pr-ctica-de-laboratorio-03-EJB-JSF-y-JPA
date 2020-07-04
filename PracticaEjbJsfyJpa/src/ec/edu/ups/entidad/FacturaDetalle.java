@@ -6,9 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class FacturaDetalle implements Serializable {
@@ -32,22 +31,24 @@ public class FacturaDetalle implements Serializable {
 
 	private double total;
 
-	private List<Pedido> pedidos;
+	// @OneToMany(cascade = CascadeType.ALL, mappedBy = "rol")
+	// private List<Pedido> pedidos;
+	private Set<Pedido> listaPedidos = new HashSet<Pedido>();;
 
 	public FacturaDetalle() {
-		pedidos = new ArrayList<Pedido>();
+		super();
+		// pedidos = new ArrayList<Pedido>();
 		// TODO Auto-generated constructor stub
 	}
 
-	public FacturaDetalle(FacturaCabecera fcabecera, double precio, double subtotal, double iva, double total,
-			List<Pedido> pedidos) {
+	public FacturaDetalle(FacturaCabecera fcabecera, double precio, double subtotal, double iva, double total) {
 		super();
 		this.fcabecera = fcabecera;
 		this.precio = precio;
 		this.subtotal = subtotal;
 		this.iva = iva;
 		this.total = total;
-		this.pedidos = pedidos;
+		//this.pedidos = pedidos;
 
 	}
 
@@ -99,12 +100,12 @@ public class FacturaDetalle implements Serializable {
 		this.total = total;
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
+	public Set<Pedido> getListaPedidos() {
+		return listaPedidos;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setListaPedidos(Set<Pedido> listaPedidos) {
+		this.listaPedidos = listaPedidos;
 	}
 
 	@Override
@@ -132,7 +133,7 @@ public class FacturaDetalle implements Serializable {
 	@Override
 	public String toString() {
 		return "FacturaDetalle [codigo=" + codigo + ", fcabecera=" + fcabecera + ", precio=" + precio + ", subtotal="
-				+ subtotal + ", iva=" + iva + ", total=" + total + ", pedidos=" + pedidos + "]";
+				+ subtotal + ", iva=" + iva + ", total=" + total + "]";
 	}
 
 }
