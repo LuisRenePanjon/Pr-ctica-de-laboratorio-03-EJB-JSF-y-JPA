@@ -1,12 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:p="https://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
+	<p:outputLabel value="JournalDev - JSF2/Primefaces Tutorial"></p:outputLabel>
 <h:head>
 	<title>Facturas</title>
-		<style>
+	<style>
 .tabla {
 	border-collapse: collapse;
 }
@@ -33,70 +34,101 @@
 </h:head>
 <h:body>
 	<h3>Realizar Venta</h3>
-		<h:form id="formFactura">
-			<p:layout id="capaDatosClienteFactura"
-				style="width:100%; height:150px;">
-				<p:layoutUnit id="datosCliente" position="center"
-					style="padding:5px;text-align: justify; font-size 14px;" size="300">
+	<h:form id="formFactura">
+		<p:layout id="capaDatosClienteFactura"
+			style="width:100%; height:150px;">
+			<p:layoutUnit id="datosCliente" position="center"
+				style="padding:5px;text-align: justify; font-size 14px;" size="300">
 
-					<h:panelGrid id="gridBuscarDatosCliente" columns="5">
-						<h:outputLabel value="Codigo Cliente" style="font-weight:bold;" />
-						<h:inputText size="12" />
-						<h:commandButton value="..." />
-						<h:outputLabel value="Fecha: " style="font-weight:bold;" />
-						<h:outputLabel value="Fecha Sistema" style="font-weight:bold;" />
-					</h:panelGrid>
+				<h:panelGrid id="gridBuscarDatosCliente" columns="5">
+					<h:outputLabel value="Codigo Cliente" style="font-weight:bold;" />
+					<h:inputText size="12" />
+					<h:commandButton value="..." oncomplete="PF('dialogClientes').show();" update=":formFactura:dlgClientes"/>
+					<h:outputLabel value="Fecha: " style="font-weight:bold;" />
+					<h:outputLabel value="Fecha Sistema" style="font-weight:bold;" />
+				</h:panelGrid>
 
-					<h:panelGrid id="gridDatosCliente" columns="2">
-						<h:outputLabel value="Nombre: " style="font-weight:bold;" />
-						<h:outputLabel id="lblNombreCliente" value="" />
+				<h:panelGrid id="gridDatosCliente" columns="2">
+					<h:outputLabel value="Nombre: " style="font-weight:bold;" />
+					<h:outputLabel id="lblNombreCliente" value="" />
 
-						<h:outputLabel value="Cedula: " style="font-weight:bold;" />
-						<h:outputLabel id="lblCedulaCliente" value="" />
+					<h:outputLabel value="Cedula: " style="font-weight:bold;" />
+					<h:outputLabel id="lblCedulaCliente" value="" />
 
-					</h:panelGrid>
-				</p:layoutUnit>
-			</p:layout>
-		
-	
-	<p:layoutUnit id="datosFactura" position="east"
-		style="padding:5px;text-align: center; font-size 14px;" size="200">
-		<h:panelGrid columns="1" style="font-size: 24px; font-weight:bold;margin-top 30px; margin:0 auto;">
+				</h:panelGrid>
+			</p:layoutUnit>
+		</p:layout>
+
+
+		<p:layoutUnit id="datosFactura" position="east"
+			style="padding:5px;text-align: center; font-size 14px;" size="200">
+			<h:panelGrid columns="1"
+				style="font-size: 24px; font-weight:bold;margin-top 30px; margin:0 auto;">
 		Factura
 		<h:outputLabel value="000001" />
-		</h:panelGrid>
+			</h:panelGrid>
 
-	</p:layoutUnit>
-	
-	<h:panelGrid columns="3">
-	<h:outputLabel value="Codigo Barra: " />
-	<h:inputText value="" size="12"/>
-	<h:commandButton value="..."/>
-	</h:panelGrid>
-	<h:dataTable id="tablaProductos" styleClass="tabla"
-			headerClass="cabeceraTabla" >
-	<h:column>
-	<f:facet name="header">Codigo Barra</f:facet>
-	</h:column>
-	<h:column>
-	<f:facet name="header">Categoria</f:facet>
-	</h:column>
-	<h:column>
-	<f:facet name="header">Nombre Producto</f:facet>
-	</h:column>
-	<h:column>
-	<f:facet name="header">Precio Venta</f:facet>
-	</h:column>
-	<h:column>
-	<f:facet name="header">Total</f:facet>
-	</h:column>
-	</h:dataTable>
-	<h:outputLabel value="Total Venta" />
+		</p:layoutUnit>
+
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Codigo Barra: " />
+			<h:inputText value="" size="12" />
+			<h:commandButton value="..." />
+		</h:panelGrid>
+		<h:dataTable id="tablaProductos" styleClass="tabla"
+			headerClass="cabeceraTabla">
+			<h:column>
+				<f:facet name="header">Codigo Barra</f:facet>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Categoria</f:facet>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nombre Producto</f:facet>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Precio Venta</f:facet>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Total</f:facet>
+			</h:column>
+		</h:dataTable>
+		<h:outputLabel value="Total Venta" />
 	$<h:outputLabel value="total a vender" />
-	<h:commandButton value="Registrar"/>
-	<h:commandButton value="Imprimir"/>
-	<h:commandButton value="Cancelar"/>
-	
+		<h:commandButton value="Registrar" />
+		<h:commandButton value="Imprimir" />
+		<h:commandButton value="Cancelar" />
+
+		<p:dialog id="dlgClientes" widgetVar="dialogClientes" modal="true"
+			resizable="false" showEffect="explode" hideEffect="explode">
+			<h:dataTable value="#{usuarioBean.listClientes}" var="c"
+				styleClass="tabla" headerClass="cabeceraTabla"
+				rowClasses="filaPar,filaImpar">
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>#{c.nombre}</h:column>
+				<h:column>
+					<f:facet name="header">Apellido</f:facet>
+					<h:inputText value="#{c.apellido}" size="10"
+						rendered="#{c.editable}" />
+					<h:outputText value="#{c.apellido}" rendered="#{not c.editable}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Correo</f:facet>#{c.correo}
+			</h:column>
+				<h:column>
+					<f:facet name="header">Cargo</f:facet>#{c.rol.cargo}
+			</h:column>
+				<h:column>
+					<f:facet name="header">Accion</f:facet>
+					<h:commandLink value="Delete"
+						action="#{usuarioBean.deleteEmpleado(c)}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Accion</f:facet>
+					<p:commandButton value="Seleccionar" oncomplete="PF('dialogClientes').hide();" update=":formFactura:gridDatosCliente"/>
+				</h:column>
+			</h:dataTable>
+		</p:dialog>
 	</h:form>
 </h:body>
 
