@@ -36,22 +36,25 @@
 								<h3 class="login-heading mb-4">Crear Cliente</h3>
 
 
-								<h:form>
-									<div class="form-label-group">
+								<h:form id="form">
+								<h:messages for="form" style="color:red" />
+								
+									<div class="form-label-group" >
 										<h:inputText value="#{usuarioBean.nombre}"
-											styleClass="form-control" required="Obligatorio" />
+											styleClass="form-control" required="true" requiredMessage="Obligatorio" id="nombre"/>
+											<h:messages for="form" style="color:red" />
 										<label for="inputEmail">Nombres</label>
 									</div>
 
 									<div class="form-label-group">
 										<h:inputText value="#{usuarioBean.apellido}"
-											styleClass="form-control" required="Obligatorio" />
+											styleClass="form-control" required="true" requiredMessage="Obligatorio" />
 										<label for="inputEmail">Apellidos</label>
 									</div>
 
 									<div class="form-label-group">
 										<h:inputText value="#{usuarioBean.cedula}"
-											styleClass="form-control" required="Obligatorio"
+											styleClass="form-control" required="true" requiredMessage="Obligatorio"
 											maxlength="10" />
 										<label for="inputEmail">Cedula</label>
 									</div>
@@ -59,13 +62,13 @@
 									<div class="form-label-group">
 										<h:inputText value="#{usuarioBean.correo}"
 											styleClass="form-control" id="inputEmail"
-											required="Obligatorio" />
+											required="true" requiredMessage="Obligatorio" />
 										<label for="inputEmail">Correo</label>
 									</div>
 
 									<div class="form-label-group">
 										<h:inputSecret value="#{usuarioBean.passw}"
-											styleClass="form-control" required="Obligatorio" />
+											styleClass="form-control" required="true" requiredMessage="Obligatorio" />
 										<label for="inputEmail">Contrasena</label>
 									</div>
 
