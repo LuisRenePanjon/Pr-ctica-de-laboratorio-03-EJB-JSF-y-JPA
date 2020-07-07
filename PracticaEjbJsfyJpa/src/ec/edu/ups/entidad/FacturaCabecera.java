@@ -106,6 +106,18 @@ public class FacturaCabecera implements Serializable  {
 
 
 
+	public int getCodigo() {
+		return codigo;
+	}
+
+
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

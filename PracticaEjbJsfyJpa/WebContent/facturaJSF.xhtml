@@ -6,90 +6,288 @@
 <h:head>
 	<title>Facturas</title>
 	<style>
-		.tabla {
-			border-collapse: collapse;
-		}
-		
-		.cabeceraTabla {
-			text-align: center;
-			background: none repeat scroll 0 0 #E5E5E5;
-			border-bottom: 1px solid #BBBBBB;
-			padding: 8px;
-		}
-		
-		.filaPar {
-			text-align: center;
-			background: none repeat scroll 0 0 #FFFFFFF;
-			border-top: 1px solid #BBBBBB;
-		}
-		
-		.filaImpar {
-			text-align: center;
-			background: none repeat scroll 0 0 #F9F9F9;
-			border-top: 1px solid #BBBBBB;
-		}
-	</style>
+.tabla {
+	border-collapse: collapse;
+}
+
+.cabeceraTabla {
+	text-align: center;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 8px;
+}
+
+.filaPar {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 1px solid #BBBBBB;
+}
+
+.filaImpar {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 1px solid #BBBBBB;
+}
+
+
+ .confondo {
+   background-color: #def;
+   width: 100%;
+   font-size: 24px;
+   font-size: 1.000em
+ }
+ 
+ .bot{
+ 
+ 	background: #00c3f8; 
+ 	border-radius: 100px 100px 100px 100px;
+ 	font-size:100%; 
+ 	color:#fff;
+ 	
+ }
+ 
+  .bot2{
+ 
+ 	background: #ff0000; 
+ 	border-radius: 100px 100px 100px 100px;
+ 	font-size:100%; 
+ 	color:#fff;
+ 	
+ }
+
+</style>
+
+	<title>Facturas</title>
+	<!-- Bootstrap core CSS-->
+	<link href="principal/vendor/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet"></link>
+	<!-- Custom styles for this template  -->
+	<link href="principal/css/shop-homepage.css" rel="stylesheet"></link>
+
+	<link rel="icon" type="image/png"
+		href="plantillaTablas/images/icons/favicon.ico"></link>
+	<link rel="stylesheet" type="text/css"
+		href="plantillaTablas/vendor/bootstrap/css/bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="plantillaTablas/fonts/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="plantillaTablas/vendor/animate/animate.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="plantillaTablas/vendor/select2/select2.min.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="plantillaTablas/vendor/perfect-scrollbar/perfect-scrollbar.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="plantillaTablas/css/util.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="plantillaTablas/css/main.css"></link>
+
+
+
 </h:head>
 <h:body>
-	<h3>GestiÃ³n de categorias</h3>
-	
-	
-	
-	<h:form>
-		<h:dataTable value="#{facturaCabeceraBean.facturas}" var="c" styleClass="tabla"
-			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column>
-				<f:facet name="header">Estado</f:facet>#{c.estado}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Cliente</f:facet>#{c.usuario.codigo}
-			</h:column>
-			<h:column>
-				<f:facet name="header">Estado</f:facet>
-				<h:inputText value="#{c.estado}" rendered="#{c.editable}" />
-				<h:outputText value="#{c.estado}" rendered="#{not c.editable}" />
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Accion</f:facet>
-				<h:commandLink action="#{facturaCabeceraBean.edit(c)}" value="Edit" rendered="#{not c.editable}"/>
-				<h:commandLink action="#{facturaCabeceraBean.save(c)}" value="Save" rendered="#{c.editable}"/>
-				
-			</h:column>
-			
-		</h:dataTable>
-		
-	</h:form>
-	
-	<h:form>
-		<h:dataTable value="#{facturaCabeceraBean.facturasNulas}" var="f" styleClass="tabla"
-			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column>
-				<f:facet name="header">Estado</f:facet>#{f.estado}
-			</h:column>
-		
-		</h:dataTable>
-		
-	</h:form>
-	
-	
-	
-	<h:form>
-		<li>Datos Usuario:<h:inputText  value="#{usuarioBean.cedula}"/></li>
-		<h:commandButton value="Buscar" action="#{usuarioBean.findFacturaByUN()}"  />
-		<li><h:outputText value="#{usuarioBean.cedula}" /></li>
-	</h:form>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<div class="container">
+		<a class="navbar-brand" href="#">BODEGA</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="indexEmpleado.xhtml">Regresar</a></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
 
-	<h:dataTable value="#{usuarioBean.listFacturasCliente}" var="f" styleClass="tabla"
-			headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-			<h:column>
-				<f:facet name="header">Estado</f:facet>#{f.estado}
-			</h:column>
-		
-	</h:dataTable>
+	<!-- Page Content -->
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-lg-3">
+
+				<h1 class="my-4">Buscar Facturas</h1>
+				<div class="list-group">
+					<h:form>
+						<h:outputText value="Buscar por Cedula o E-mail" />
+						<h:inputText value="#{usuarioBean.cedula}" class="confondo" />
+						<br></br>
+						<h:commandButton value="Buscar"
+							action="#{usuarioBean.findFacturaByUN()}"  style='width: 100%; font-size: 24px; background-color: #70BF73;'/>
+						
+						
+					</h:form>
+
+				</div>
+
+			</div>
+			<!-- /.col-lg-3 -->
+
+			<div class="col-lg-9">
+
+				<h:form>
+
+					<div class="limiter">
+						<div class="container-table100">
+							<div class="wrap-table100">
+								<div class="table100 ver2 m-b-110">
+									
+									<h3 style='text-align: center;'>Facturas</h3>
+									<br></br>
+
+									<h:dataTable value="#{facturaCabeceraBean.facturas}" var="c"
+										styleClass="tabla" headerClass="cabeceraTabla"
+										rowClasses="filaPar,filaImpar">
+										<h:column>
+											<f:facet name="header">Cedula</f:facet>#{c.usuario.cedula}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Correo</f:facet>#{c.usuario.correo}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Fecha</f:facet>#{c.fecha}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Codigo F.</f:facet>#{c.codigo}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Estado</f:facet>
+											<h:inputText value="#{c.estado}" rendered="#{c.editable}" />
+											<h:outputText value="#{c.estado}"
+												rendered="#{not c.editable}" />
+										</h:column>
+
+										<h:column >
+											<f:facet name="header">Anular</f:facet>
+											<h:commandLink action="#{facturaCabeceraBean.edit(c)}"
+												value="Anular" rendered="#{not c.editable}" class='bot2' />
+											<h:commandLink action="#{facturaCabeceraBean.save(c)}"
+												value="Save" rendered="#{c.editable}" class='bot'/>
+
+										</h:column>
+
+									</h:dataTable>
+									
+
+									<br></br>
+									<h3 style='text-align: center;'>Facturas Nulas</h3>
+									<br></br>
+
+
+									<h:dataTable value="#{facturaCabeceraBean.facturasNulas}" var="f"
+										styleClass="tabla" headerClass="cabeceraTabla"
+										rowClasses="filaPar,filaImpar">
+										<h:column>
+											<f:facet name="header">Cedula</f:facet>#{f.usuario.cedula}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Correo</f:facet>#{f.usuario.correo}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Fecha</f:facet>#{f.fecha}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Codigo F.</f:facet>#{f.codigo}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Estado</f:facet>#{f.estado}
+										</h:column>
+
+									</h:dataTable>
+									
+									<br></br>
+									<h3>Facturas del Cliente : </h3><h:outputText value="#{usuarioBean.cedula}" />
+									<br></br>
+
+									<h:dataTable value="#{usuarioBean.listFacturasCliente}" var="f"
+										styleClass="tabla" headerClass="cabeceraTabla"
+										rowClasses="filaPar,filaImpar">
+										
+										<h:column>
+											<f:facet name="header">Cedula</f:facet>#{f.usuario.cedula}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Correo</f:facet>#{f.usuario.correo}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Fecha</f:facet>#{f.fecha}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Codigo F.</f:facet>#{f.codigo}
+										</h:column>
+										
+										<h:column>
+											<f:facet name="header">Estado</f:facet>
+											<h:inputText value="#{f.estado}" rendered="#{f.editable}" />
+											<h:outputText value="#{f.estado}"
+												rendered="#{not f.editable}" />
+										</h:column>
+									
+										<h:column>
+											<f:facet name="header">Accion</f:facet>
+											<h:commandLink action="#{facturaCabeceraBean.edit(f)}"
+												value="Edit" rendered="#{not f.editable}" class='bot'/>
+											<h:commandLink action="#{facturaCabeceraBean.save(f)}"
+												value="Save" rendered="#{f.editable}" class='bot'/>
+
+										</h:column>
+
+									</h:dataTable>
+
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</h:form>
+
+
+
+
+
+			</div>
+			<!-- /.col-lg-9 -->
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+	<div class="container">
+		<p class="m-0 text-center text-white">Copyright &copy; Your
+			Website 2020</p>
+	</div>
+	<!-- /.container --> </footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
-	
-	
+
+
+
+
+	<!--===============================================================================================-->
+	<script src="plantillaTablas/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="plantillaTablas/vendor/bootstrap/js/popper.js"></script>
+	<script src="plantillaTablas/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="plantillaTablas/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="plantillaTablas/js/main.js"></script>
+
 </h:body>
 
 </html>

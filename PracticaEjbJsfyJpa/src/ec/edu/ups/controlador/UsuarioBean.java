@@ -205,22 +205,29 @@ public class UsuarioBean implements Serializable{
 	
 	
 	public String findFacturaByUN() {
-		
-		System.out.println("----------Busca al usuario------------");
-		
-		Usuario usu = ejbUsuarioFacade.buscarClienteByCC(this.cedula);
-		System.out.println(usu.toString());
-		
-		
-		Set<FacturaCabecera> listauxiliar = usu.getListaFacturas();
-		
-		System.out.println(listauxiliar.size());
-		
-		for (FacturaCabecera obj : listauxiliar) {
-			System.out.println(obj);
+		try {
+			System.out.println("----------Busca al usuario------------");
+			
+			Usuario usu = ejbUsuarioFacade.buscarClienteByCC(this.cedula);
+			System.out.println(usu.toString());
+			
+			
+			Set<FacturaCabecera> listauxiliar = usu.getListaFacturas();
+			
+			System.out.println(listauxiliar.size());
+			
+			for (FacturaCabecera obj : listauxiliar) {
+				System.out.println(obj);
+			}
+			
+			this.listFacturasCliente = listauxiliar;	
+			
+		} catch (Exception e) {
+			this.cedula="No se a encontrado el Usuario";
 		}
 		
-		this.listFacturasCliente = listauxiliar;
+			
+		
 		
 		
 		return null;
