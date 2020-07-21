@@ -21,6 +21,8 @@ import ec.edu.ups.entidad.Ubicacion;
 @SessionScoped
 public class BodegaBean implements Serializable {
 
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	@EJB

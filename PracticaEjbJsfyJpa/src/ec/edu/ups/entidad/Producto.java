@@ -19,6 +19,7 @@ public class Producto implements Serializable {
 	private String nombre;
 	private String categoria;
 	private double precio;
+	private double precioNeto;
 
 	@Transient
 	private boolean editable;
@@ -27,11 +28,13 @@ public class Producto implements Serializable {
 		super();
 	}
 
-	public Producto(String nombre, String categoria, double precio) {
+	public Producto(String nombre, String categoria, double precio, double precioNeto) {
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.precio = precio;
+		this.precioNeto = precioNeto;
+		
 	}
 
 	public int getCodigo() {
@@ -64,6 +67,14 @@ public class Producto implements Serializable {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
+	}
+	
+	public double getPrecioNeto() {
+		return precioNeto;
+	}
+
+	public void setPrecioNeto(double precioNeto) {
+		this.precioNeto = precioNeto;
 	}
 
 	@Override

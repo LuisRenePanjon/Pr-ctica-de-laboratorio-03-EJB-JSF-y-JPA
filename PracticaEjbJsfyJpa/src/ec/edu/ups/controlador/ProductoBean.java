@@ -28,6 +28,7 @@ public class ProductoBean implements Serializable {
 	private String nombre;
 	private String categoria;
 	private double precio;
+	private double precioNeto;
 
 	public ProductoBean() {
 
@@ -36,8 +37,8 @@ public class ProductoBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		ejbProductoFacade.create(new Producto("Yogurt", "Lacteos", 12.45));
-		ejbProductoFacade.create(new Producto("Queso", "Lacteos", 14.45));
+		ejbProductoFacade.create(new Producto("Yogurt", "Lacteos", 12.45, 11.99));
+		ejbProductoFacade.create(new Producto("Queso", "Lacteos", 14.45, 12.85));
 		list = ejbProductoFacade.findAll();
 
 	}
@@ -70,14 +71,22 @@ public class ProductoBean implements Serializable {
 		return precio;
 	}
 
-	
-	
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+	
+
+	public double getPrecioNeto() {
+		return precioNeto;
+	}
+
+	public void setPrecioNeto(double precioNeto) {
+		this.precioNeto = precioNeto;
+	}
 
 	public String add() {
-		ejbProductoFacade.create(new Producto(this.nombre, this.categoria, this.precio));
+		ejbProductoFacade.create(new Producto(this.nombre, this.categoria, this.precio, this.precioNeto));
 		list = ejbProductoFacade.findAll();
 		return null;
 	}
