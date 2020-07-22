@@ -37,9 +37,15 @@ public class Usuario implements Serializable {
 	@Column(unique=true)
 	private String contrasena;
 	
+	private String estado;
+	
+	private String cuenta;
+	
 	@ManyToOne
 	@JoinColumn
 	private Rol rol;
+	
+	
 	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
