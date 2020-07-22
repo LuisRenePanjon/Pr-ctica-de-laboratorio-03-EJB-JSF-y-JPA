@@ -27,6 +27,10 @@ public class Stock implements Serializable {
 	@ManyToOne
 	@JoinColumn
 	private Bodega bodega;
+	
+	
+	
+	//Cambios Realizados
 
 	public Stock() {
 		super();
