@@ -27,9 +27,9 @@ public class Bodega implements Serializable {
 	@ManyToOne
 	@JoinColumn
 	private Distribuidora distribuidora;
-	@ManyToOne
-	@JoinColumn
-	private Stock stock;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "bodega")
+	private Set<Stock> listaStock = new HashSet<Stock>();
 	
 	@Transient
 	private boolean editable;
@@ -38,22 +38,27 @@ public class Bodega implements Serializable {
 		super();
 	}
 
-	public Bodega(String nombre, Ubicacion ubicacion, Distribuidora distribuidora, Stock stock) {
-		super();
-		this.nombre = nombre;
-		this.ubicacion = ubicacion;
-		this.distribuidora = distribuidora;
-		this.stock = stock;
-	}
+
 	
 	
 
-	public Bodega(String nombre, Ubicacion ubicacion, Distribuidora distribuidora, Stock stock, boolean editable) {
+	public Bodega(int codigo, String nombre, Ubicacion ubicacion, Distribuidora distribuidora) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.ubicacion = ubicacion;
+		this.distribuidora = distribuidora;
+	}
+
+
+
+
+
+	public Bodega(String nombre, Ubicacion ubicacion, Distribuidora distribuidora, boolean editable) {
 		super();
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
 		this.distribuidora = distribuidora;
-		this.stock = stock;
 		this.editable = editable;
 	}
 
@@ -108,13 +113,19 @@ public class Bodega implements Serializable {
 		this.distribuidora = distribuidora;
 	}
 
-	public Stock getStock() {
-		return stock;
+	
+	public Set<Stock> getListaStock() {
+		return listaStock;
 	}
 
-	public void setStock(Stock stock) {
-		this.stock = stock;
+	public void setListaStock(Set<Stock> listaStock) {
+		this.listaStock = listaStock;
 	}
+
+	public void agregarStock(Stock stock) {
+		this.listaStock.add(stock);
+	}
+
 	
 	
 

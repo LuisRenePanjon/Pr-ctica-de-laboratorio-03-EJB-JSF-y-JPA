@@ -21,8 +21,12 @@ public class Stock implements Serializable {
 	@Id
 	private int codigo;
 	private int cantidad;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "stock")
-	private Set<Bodega> listaBodegas = new HashSet<Bodega>();
+	@OneToOne
+	private Producto producto;
+	
+	@ManyToOne
+	@JoinColumn
+	private Bodega bodega;
 
 	public Stock() {
 		super();
@@ -42,18 +46,6 @@ public class Stock implements Serializable {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
-	}
-
-	public Set<Bodega> getListaBodegas() {
-		return listaBodegas;
-	}
-
-	public void setListaBodegas(Set<Bodega> listaBodegas) {
-		this.listaBodegas = listaBodegas;
-	}
-
-	public void agregarBodega(Bodega bodega) {
-		this.listaBodegas.add(bodega);
 	}
 
 	@Override
