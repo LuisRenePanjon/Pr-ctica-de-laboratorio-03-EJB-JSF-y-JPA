@@ -26,22 +26,29 @@ import ec.edu.ups.entidad.Ubicacion;
 public class StockBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	private String nombreB;
+	private String nombreP;
 
 	@EJB
 	private StockFacade ejbStockFacade;
 
 	private List<Stock> list;
+	
 
 	private int codigo;
 	private int cantidad;
-	
-	
+
 	@EJB
 	private ProductoFacade ejbProductoFacade;
-	private Set<Producto> listaProducto = new HashSet<Producto>();
 	
+	private List<Producto> listProducto;
+	private Set<Producto> listaProducto = new HashSet<Producto>();
+
 	@EJB
 	private BodegaFacade ejbBodegaFacade;
+	
+	private List<Bodega> listBodega;
 	private Set<Bodega> listaBodegas = new HashSet<Bodega>();
 
 	public StockBean() {
@@ -53,6 +60,8 @@ public class StockBean implements Serializable {
 	public void init() {
 		ejbStockFacade.create(new Stock());
 		list = ejbStockFacade.findAll();
+		listProducto = ejbProductoFacade.findAll();
+		listBodega = ejbBodegaFacade.findAll();
 
 	}
 
@@ -75,6 +84,24 @@ public class StockBean implements Serializable {
 	public int getCantidad() {
 		return cantidad;
 	}
+	
+	
+
+	public String getNombreB() {
+		return nombreB;
+	}
+
+	public void setNombreB(String nombreB) {
+		this.nombreB = nombreB;
+	}
+
+	public String getNombreP() {
+		return nombreP;
+	}
+
+	public void setNombreP(String nombreP) {
+		this.nombreP = nombreP;
+	}
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
@@ -89,5 +116,73 @@ public class StockBean implements Serializable {
 	}
 
 	
+	public ProductoFacade getEjbProductoFacade() {
+		return ejbProductoFacade;
+	}
+
+	public void setEjbProductoFacade(ProductoFacade ejbProductoFacade) {
+		this.ejbProductoFacade = ejbProductoFacade;
+	}
+
+	
+	public Set<Producto> getListaProducto() {
+		return listaProducto;
+	}
+
+	public void setListaProducto(Set<Producto> listaProducto) {
+		this.listaProducto = listaProducto;
+	}
+
+	public BodegaFacade getEjbBodegaFacade() {
+		return ejbBodegaFacade;
+	}
+
+	public void setEjbBodegaFacade(BodegaFacade ejbBodegaFacade) {
+		this.ejbBodegaFacade = ejbBodegaFacade;
+	}
+
+	
+
+	public List<Producto> getListProducto() {
+		return listProducto;
+	}
+
+	public void setListProducto(List<Producto> listProducto) {
+		this.listProducto = listProducto;
+	}
+
+	public List<Bodega> getListBodega() {
+		return listBodega;
+	}
+
+	public void setListBodega(List<Bodega> listBodega) {
+		this.listBodega = listBodega;
+	}
+
+	public String addStock() {
+
+		Bodega bodega = ejbBodegaFacade.readBodega(this.nombreB);
+		Producto producto= ejbProductoFacade.readProducto(this.nombreP);
+		ejbStockFacade.create(new Stock(this.cantidad, producto, bodega));
+		list = ejbStockFacade.findAll();
+		return null;
+	}
+
+	public String delete(Stock b) {
+		ejbStockFacade.remove(b);
+		list = ejbStockFacade.findAll();
+		return null;
+	}
+
+	public String edit(Stock b) {
+		b.setEditable(true);
+		return null;
+	}
+
+	public String save(Stock b) {
+		ejbStockFacade.edit(b);
+		b.setEditable(false);
+		return null;
+	}
 
 }

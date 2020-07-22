@@ -7,6 +7,8 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Producto
  *
  */
+
+@NamedQuery(name = "getByProducto", query = "SELECT p FROM Producto p WHERE p.nombre =:nombre")
 @Entity
 
 public class Producto implements Serializable {
