@@ -111,15 +111,20 @@
 						<ul>
 							<li>Cantidad: <h:inputText size="15"
 									value="#{stockBean.cantidad}" class="confondo" /></li>
-							<h:selectOneMenu value="#{stockBean.nombreP}">
-								<f:selectItems value="#{stockBean.listProducto}" var="list1"
-									itemValue="#{list1.nombre}" itemLabel="#{list1.nombre}" />
-							</h:selectOneMenu>
-							<h:selectOneMenu value="#{stockBean.nombreB}">
-								<f:selectItems value="#{stockBean.listProducto}" var="list2"
+
+							<li>Producto:<h:selectOneMenu
+									value="#{stockBean.nombreP}"  class="confondo">
+									<f:selectItems value="#{stockBean.listProducto}" var="list1"
+										itemValue="#{list1.nombre}" itemLabel="#{list1.nombre}" />
+								</h:selectOneMenu>
+							</li>
+							<li>Bodega: <h:selectOneMenu value="#{stockBean.nombreB}"  class="confondo">
+								<f:selectItems value="#{stockBean.listBodega}" var="list2"
 									itemValue="#{list2.nombre}" itemLabel="#{list2.nombre}" />
-							</h:selectOneMenu>
-						
+							</h:selectOneMenu> </li>
+
+							
+
 						</ul>
 
 						<h:commandButton value="Add" action="#{stockBean.addStock()}"
@@ -129,7 +134,7 @@
 
 			</div>
 
-			
+
 
 		</div>
 		<!-- /.row -->
