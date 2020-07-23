@@ -112,18 +112,18 @@
 							<li>Cantidad: <h:inputText size="15"
 									value="#{stockBean.cantidad}" class="confondo" /></li>
 
-							<li>Producto:<h:selectOneMenu
-									value="#{stockBean.nombreP}"  class="confondo">
+							<li>Producto:<h:selectOneMenu value="#{stockBean.nombreP}"
+									class="confondo">
 									<f:selectItems value="#{stockBean.listProducto}" var="list1"
 										itemValue="#{list1.nombre}" itemLabel="#{list1.nombre}" />
 								</h:selectOneMenu>
 							</li>
-							<li>Bodega: <h:selectOneMenu value="#{stockBean.nombreB}"  class="confondo">
-								<f:selectItems value="#{stockBean.listBodega}" var="list2"
-									itemValue="#{list2.nombre}" itemLabel="#{list2.nombre}" />
-							</h:selectOneMenu> </li>
-
-							
+							<li>Bodega: <h:selectOneMenu value="#{stockBean.nombreB}"
+									class="confondo">
+									<f:selectItems value="#{stockBean.listBodega}" var="list2"
+										itemValue="#{list2.nombre}" itemLabel="#{list2.nombre}" />
+								</h:selectOneMenu>
+							</li>
 
 						</ul>
 
@@ -136,9 +136,9 @@
 
 
 
-		</div>
-		<!-- /.row -->
-		<div class="col-lg-9">
+
+			<!-- /.row -->
+			<div class="col-lg-9">
 				<h:form>
 					<div class="limiter">
 						<div class="container-table100">
@@ -169,11 +169,10 @@
 											<f:facet name="header">Bodega</f:facet>#{c.bodega.nombre}
 											
 										</h:column>
-										
+
 										<h:column>
 											<f:facet name="header">Accion</f:facet>
-											<h:commandLink value="Delete"
-												action="#{stockBean.delete(c)}" />
+											<h:commandLink value="Delete" action="#{stockBean.delete(c)}" />
 										</h:column>
 										<h:column>
 											<f:facet name="header">Accion</f:facet>
@@ -195,37 +194,36 @@
 
 
 
+			</div>
+			<!-- /.col-lg-9 -->
+
 		</div>
-		<!-- /.col-lg-9 -->
+		</div>
+		<!-- /.container -->
 
-	</div>
-	<!-- /.container -->
+		<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2020</p>
+		</div>
+		<!-- /.container --> </footer>
 
-	<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your
-			Website 2020</p>
-	</div>
-	<!-- /.container --> </footer>
-
-	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 
 
 
-	<!--===============================================================================================-->
-	<script src="plantillaTablas/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="plantillaTablas/vendor/bootstrap/js/popper.js"></script>
-	<script src="plantillaTablas/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="plantillaTablas/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="plantillaTablas/js/main.js"></script>
-
-
+		<!--===============================================================================================-->
+		<script src="plantillaTablas/vendor/jquery/jquery-3.2.1.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="plantillaTablas/vendor/bootstrap/js/popper.js"></script>
+		<script src="plantillaTablas/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="plantillaTablas/vendor/select2/select2.min.js"></script>
+		<!--===============================================================================================-->
+		<script src="plantillaTablas/js/main.js"></script>
 </h:body>
 </html>

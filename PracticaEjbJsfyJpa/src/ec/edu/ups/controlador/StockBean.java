@@ -59,7 +59,6 @@ public class StockBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		ejbStockFacade.create(new Stock());
 		list = ejbStockFacade.findAll();
 		listProducto = ejbProductoFacade.findAll();
 		listBodega = ejbBodegaFacade.findAll();

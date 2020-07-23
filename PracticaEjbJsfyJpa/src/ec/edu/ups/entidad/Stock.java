@@ -43,7 +43,6 @@ public class Stock implements Serializable {
 	
 
 	public Stock( int cantidad, Producto producto, Bodega bodega) {
-		super();
 		this.cantidad = cantidad;
 		this.producto = producto;
 		this.bodega = bodega;
@@ -75,9 +74,6 @@ public class Stock implements Serializable {
 		this.editable = editable;
 	}
 	
-	
-
-
 	public Producto getProducto() {
 		return producto;
 	}
