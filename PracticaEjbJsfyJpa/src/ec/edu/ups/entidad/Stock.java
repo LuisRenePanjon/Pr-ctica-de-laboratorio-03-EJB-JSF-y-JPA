@@ -11,6 +11,8 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Stock
  *
  */
+
+
 @Entity
 
 public class Stock implements Serializable {
@@ -19,6 +21,7 @@ public class Stock implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int codigo;
 	private int cantidad;
 	@OneToOne
@@ -28,13 +31,25 @@ public class Stock implements Serializable {
 	@JoinColumn
 	private Bodega bodega;
 	
-	
+	@Transient
+	private boolean editable;
 	
 	//Cambios Realizados
 
 	public Stock() {
 		super();
 	}
+	
+	
+
+	public Stock( int cantidad, Producto producto, Bodega bodega) {
+		super();
+		this.cantidad = cantidad;
+		this.producto = producto;
+		this.bodega = bodega;
+	}
+
+
 
 	public int getCodigo() {
 		return codigo;
@@ -51,6 +66,15 @@ public class Stock implements Serializable {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+	
+	public boolean isEditable() {
+		return editable;
+	}
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
 
 	@Override
 	public int hashCode() {
