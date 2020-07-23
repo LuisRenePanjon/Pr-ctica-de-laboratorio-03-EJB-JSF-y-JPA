@@ -19,7 +19,7 @@ public class RegistrarseREST {
 	private UsuarioFacade ejbUsuarioFacade;
 	
 	
-	
+	//Service
 	@GET @Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
 	public Response comprobarRegistro(@PathParam("id") String id ) {
