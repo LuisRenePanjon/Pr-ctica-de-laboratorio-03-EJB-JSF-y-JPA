@@ -142,7 +142,7 @@ public class UsuarioBean implements Serializable{
 		Rol cliente=ejbRolFacade.readRol("cliente");
 		ejbUsuarioFacade.create(new Usuario(this.nombre,this.apellido,this.cedula,this.correo,this.passw,cliente));
 		listClientes = ejbUsuarioFacade.listarPorCargo(3);
-		return null;
+		return "listaClientes";
 	}
 	
 	

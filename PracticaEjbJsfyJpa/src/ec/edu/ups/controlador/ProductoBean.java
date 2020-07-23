@@ -37,8 +37,8 @@ public class ProductoBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		ejbProductoFacade.create(new Producto("Yogurt", "Lacteos", 12.45, 11.99));
-		ejbProductoFacade.create(new Producto("Queso", "Lacteos", 14.45, 12.85));
+		//ejbProductoFacade.create(new Producto("Yogurt", "Lacteos", 12.45, 11.99));
+		//ejbProductoFacade.create(new Producto("Queso", "Lacteos", 14.45, 12.85));
 		list = ejbProductoFacade.findAll();
 
 	}
