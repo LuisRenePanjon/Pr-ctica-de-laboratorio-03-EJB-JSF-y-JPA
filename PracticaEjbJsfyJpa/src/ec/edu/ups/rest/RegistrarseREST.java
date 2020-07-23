@@ -20,6 +20,7 @@ public class RegistrarseREST {
 	
 	
 	//Service
+	
 	@GET @Produces(MediaType.APPLICATION_JSON)
 	@Path("/{id}")
 	public Response comprobarRegistro(@PathParam("id") String id ) {
