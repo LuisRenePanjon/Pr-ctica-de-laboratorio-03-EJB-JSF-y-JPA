@@ -21,7 +21,7 @@ public class Stock implements Serializable {
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int codigo;
 	private int cantidad;
 	@OneToOne

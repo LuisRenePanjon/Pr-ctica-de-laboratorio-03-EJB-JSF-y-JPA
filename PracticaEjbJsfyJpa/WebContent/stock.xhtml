@@ -161,22 +161,19 @@
 												rendered="#{not c.editable}" />
 										</h:column>
 										<h:column>
-											<f:facet name="header">Producto</f:facet>
-											<h:inputText value="#{c.producto.nombre}" size="10"
-												 />
+											<f:facet name="header">Producto</f:facet>#{c.producto.nombre}
+											
 										
 										</h:column>
 										<h:column>
-											<f:facet name="header">Bodega</f:facet>
-											<h:inputText value="#{c.bodega.nombre}" size="10"
-												 />
+											<f:facet name="header">Bodega</f:facet>#{c.bodega.nombre}
 											
 										</h:column>
 										
 										<h:column>
 											<f:facet name="header">Accion</f:facet>
 											<h:commandLink value="Delete"
-												action="#{productoBean.delete(c)}" />
+												action="#{stockBean.delete(c)}" />
 										</h:column>
 										<h:column>
 											<f:facet name="header">Accion</f:facet>
