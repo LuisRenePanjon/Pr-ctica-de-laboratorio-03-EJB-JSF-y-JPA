@@ -200,6 +200,7 @@ public class UsuarioBean implements Serializable{
 		ejbUsuarioFacade.edit(usuario);
 		usuario.setEditable(false);
 		return null;
+		
 	}
 	
 	

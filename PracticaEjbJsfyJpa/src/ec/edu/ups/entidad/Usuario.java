@@ -178,6 +178,28 @@ public class Usuario implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
+	
+	
+
+
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
+	public String getCuenta() {
+		return cuenta;
+	}
+
+
+	public void setCuenta(String cuenta) {
+		this.cuenta = cuenta;
+	}
 
 
 	@Override
@@ -207,7 +229,8 @@ public class Usuario implements Serializable {
 	@Override
 	public String toString() {
 		return "Usuario [codigo=" + codigo + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", correo=" + correo + ", contrasena=" + contrasena + "]";
+				+ ", correo=" + correo + ", contrasena=" + contrasena + ", estado=" + estado + ", cuenta=" + cuenta
+				+ ", rol=" + rol + ", listaFacturas=" + listaFacturas + ", editable=" + editable + "]";
 	}
 	
 	
