@@ -74,6 +74,32 @@ public class Stock implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
+	
+	
+
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
+
+
+
+	public Bodega getBodega() {
+		return bodega;
+	}
+
+
+
+	public void setBodega(Bodega bodega) {
+		this.bodega = bodega;
+	}
+
 
 
 	@Override

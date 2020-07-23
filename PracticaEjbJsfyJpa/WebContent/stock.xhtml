@@ -162,13 +162,13 @@
 										</h:column>
 										<h:column>
 											<f:facet name="header">Producto</f:facet>
-											<h:inputText value="#{stockBean.listProducto.get(productoBean.)}" size="10"
+											<h:inputText value="#{c.producto.nombre}" size="10"
 												 />
 										
 										</h:column>
 										<h:column>
 											<f:facet name="header">Bodega</f:facet>
-											<h:inputText value="#{c.precio}" size="10"
+											<h:inputText value="#{c.bodega.nombre}" size="10"
 												 />
 											
 										</h:column>
@@ -180,9 +180,9 @@
 										</h:column>
 										<h:column>
 											<f:facet name="header">Accion</f:facet>
-											<h:commandLink value="Edit" action="#{productoBean.edit(c)}"
+											<h:commandLink value="Edit" action="#{stockBean.edit(c)}"
 												rendered="#{not c.editable}" />
-											<h:commandLink value="Save" action="#{productoBean.save(c)}"
+											<h:commandLink value="Save" action="#{stockBean.save(c)}"
 												rendered="#{c.editable}" />
 										</h:column>
 

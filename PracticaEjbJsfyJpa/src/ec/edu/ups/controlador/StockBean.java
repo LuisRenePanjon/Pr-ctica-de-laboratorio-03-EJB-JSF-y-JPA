@@ -39,6 +39,7 @@ public class StockBean implements Serializable {
 	private int codigo;
 	private int cantidad;
 
+
 	@EJB
 	private ProductoFacade ejbProductoFacade;
 	
@@ -158,11 +159,23 @@ public class StockBean implements Serializable {
 	public void setListBodega(List<Bodega> listBodega) {
 		this.listBodega = listBodega;
 	}
+	
+	
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
 
 	public String addStock() {
 
 		Bodega bodega = ejbBodegaFacade.readBodega(this.nombreB);
 		Producto producto= ejbProductoFacade.readProducto(this.nombreP);
+		
 		ejbStockFacade.create(new Stock(this.cantidad, producto, bodega));
 		list = ejbStockFacade.findAll();
 		return null;
