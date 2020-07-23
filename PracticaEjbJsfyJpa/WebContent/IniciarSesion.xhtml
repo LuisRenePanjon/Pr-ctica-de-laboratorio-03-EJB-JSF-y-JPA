@@ -7,17 +7,62 @@
 
 <h:head>
 <title>Iniciar Sesion</title>
+<!-- Bootstrap core CSS-->
+	<link href="principal/vendor/bootstrap/css/bootstrap.min.css"
+		rel="stylesheet"></link>
+
+	<!-- Custom styles for this template  -->
+	<link href="principal/css/shop-homepage.css" rel="stylesheet"></link>
+
+
+	<!-- Formulario -->
+
+	<link href="formularios/cssFormulario.css" rel="stylesheet"></link>
+
 </h:head> 
 <body>
-	<h:form>
-			<ul>
-			<li>Correo:<h:inputText size="10" value="#{usuarioBean.correo}" /></li>
-			</ul>
-			<ul>
-			<li>Contrasena:<h:inputText size="10" value="#{usuarioBean.passw}" /></li>
-			</ul>
-			
-			<h:commandButton value="Add" action="#{usuarioBean.iniciarSesion()}" />
-	</h:form>
+	
+	
+	<div class="container-fluid">
+		<div class="row no-gutter">
+			<div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+			<div class="col-md-8 col-lg-6">
+				<div class="login d-flex align-items-center py-5">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-9 col-lg-8 mx-auto">
+								<h3 class="login-heading mb-4">Iniciar Sesion</h3>
+
+
+								<h:form id="form">
+								<h:messages for="form" style="color:red" />
+								
+									<div class="form-label-group">
+										<h:inputText value="#{usuarioBean.correo}"
+											styleClass="form-control" id="inputEmail"
+											required="true" requiredMessage="Obligatorio" />
+										<label for="inputEmail">Correo</label>
+									</div>
+
+									<div class="form-label-group">
+										<h:inputSecret value="#{usuarioBean.passw}"
+											styleClass="form-control" required="true" requiredMessage="Obligatorio" />
+										<label for="inputEmail">Contrasena</label>
+									</div>
+
+									<h:commandButton value="Iniciar Sesion"
+										action="#{usuarioBean.iniciarSesion()}"
+										styleClass="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" />
+
+									<!-- <div class="text-center">
+                  <a class="small" href="#">Forgot password?</a></div> -->
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body> 
 </html>

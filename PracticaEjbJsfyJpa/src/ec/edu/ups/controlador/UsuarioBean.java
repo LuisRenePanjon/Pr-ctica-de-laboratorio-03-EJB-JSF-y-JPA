@@ -165,10 +165,12 @@ public class UsuarioBean implements Serializable{
 		Usuario usuario = ejbUsuarioFacade.readCorreo(this.correo, this.passw);
 		if(usuario != null) {
 			if(usuario.getRol().getCodigo()==2) {
-				return "crearEmpleados";
+				return "indexEmpleado";
+			}else if (usuario.getRol().getCodigo()==1) {
+				return "indexAdmin";
 			}
 		}
-		return null;
+		return "iniciarSesion";
 	}
 	
 	public String delete(Usuario usuario) {
