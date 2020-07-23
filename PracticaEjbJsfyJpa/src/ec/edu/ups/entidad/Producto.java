@@ -94,6 +94,8 @@ public class Producto implements Serializable {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {

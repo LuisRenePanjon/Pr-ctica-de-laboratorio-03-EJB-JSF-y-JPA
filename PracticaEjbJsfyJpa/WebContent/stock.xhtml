@@ -138,6 +138,68 @@
 
 		</div>
 		<!-- /.row -->
+		<div class="col-lg-9">
+				<h:form>
+					<div class="limiter">
+						<div class="container-table100">
+							<div class="wrap-table100">
+								<div class="table100 ver2 m-b-110">
+
+									<h3 style='text-align: center;'>Lista Stock</h3>
+									<br></br>
+
+									<h:dataTable value="#{stockBean.list}" var="c"
+										styleClass="tabla" headerClass="cabeceraTabla"
+										rowClasses="filaPar,filaImpar">
+										<h:column>
+											<f:facet name="header">Codigo</f:facet>#{c.codigo}</h:column>
+										<h:column>
+											<f:facet name="header">Cantidad</f:facet>
+											<h:inputText value="#{c.cantidad}" size="10"
+												rendered="#{c.editable}" />
+											<h:outputText value="#{c.cantidad}"
+												rendered="#{not c.editable}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Producto</f:facet>
+											<h:inputText value="#{stockBean.listProducto.get(productoBean.)}" size="10"
+												 />
+										
+										</h:column>
+										<h:column>
+											<f:facet name="header">Bodega</f:facet>
+											<h:inputText value="#{c.precio}" size="10"
+												 />
+											
+										</h:column>
+										
+										<h:column>
+											<f:facet name="header">Accion</f:facet>
+											<h:commandLink value="Delete"
+												action="#{productoBean.delete(c)}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Accion</f:facet>
+											<h:commandLink value="Edit" action="#{productoBean.edit(c)}"
+												rendered="#{not c.editable}" />
+											<h:commandLink value="Save" action="#{productoBean.save(c)}"
+												rendered="#{c.editable}" />
+										</h:column>
+
+									</h:dataTable>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+
+
+
+
+
+		</div>
+		<!-- /.col-lg-9 -->
 
 	</div>
 	<!-- /.container -->
