@@ -8,7 +8,7 @@
 
 
 <h:head>
-	<title>Crear Bodegas</title>
+	<title>Crear Ubicaciones</title>
 	<style>
 .tabla {
 	border-collapse: collapse;
@@ -59,8 +59,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-		
-				<li class="nav-item"><a class="nav-link" href="indexAdmin.xhtml">Regresar</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					href="indexAdmin.xhtml">Regresar</a></li>
 
 			</ul>
 		</div>
@@ -81,56 +82,67 @@
 									<h:messages for="form" style="color:red" />
 
 									<div class="form-label-group">
-										<h:inputText value="#{bodegaBean.nombre}"
+										<h:inputText value="#{ubicacionBean.pais}"
 											styleClass="form-control" required="true"
-											requiredMessage="Obligatorio" id="nombre" />
+											requiredMessage="Obligatorio" id="pais" />
 										<h:messages for="form" style="color:red" />
-										<label for="inputEmail">Nombre</label>
+										<label for="inputEmail">Pais</label>
 									</div>
 									<div class="form-label-group">
-										<p>Ubicacion</p>
-										<h:selectOneMenu value="#{bodegaBean.ciudad}">
-											<f:selectItems value="#{bodegaBean.ubicaciones}" var="list1"
-												itemValue="#{list1.ciudad}" itemLabel="#{list1.ciudad}" />
-										</h:selectOneMenu>
+										<h:inputText value="#{ubicacionBean.provincia}"
+											styleClass="form-control" required="true"
+											requiredMessage="Obligatorio" id="provincia" />
+										<h:messages for="form" style="color:red" />
+										<label for="inputEmail">Provincia</label>
 									</div>
 									<div class="form-label-group">
-										<p>Distribuidora</p>
-										<h:selectOneMenu value="#{bodegaBean.nombreD}">
-											<f:selectItems value="#{bodegaBean.distribuidoras}"
-												var="list1" itemValue="#{list1.nombre}"
-												itemLabel="#{list1.nombre}" />
-										</h:selectOneMenu>
+										<h:inputText value="#{ubicacionBean.ciudad}"
+											styleClass="form-control" required="true"
+											requiredMessage="Obligatorio" id="ciudad" />
+										<h:messages for="form" style="color:red" />
+										<label for="inputEmail">Ciudad</label>
 									</div>
-									<h:commandButton value="Agregar"
-										action="#{bodegaBean.addBodega()}"
+
+									<h:commandButton value="Agregar" action="#{ubicacionBean.add}"
 										styleClass="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" />
 
 									<!-- <div class="text-center">
                   <a class="small" href="#">Forgot password?</a></div> -->
-									<h:dataTable value="#{bodegaBean.list}" var="b"
+									<h:dataTable value="#{ubicacionBean.list}" var="u"
 										styleClass="tabla" headerClass="cabeceraTabla"
 										rowClasses="filaPar, filaImpar">
+										
 										<h:column>
-											<f:facet name="header">Codigo</f:facet>#{b.codigo}</h:column>
+											<f:facet name="header">Pais</f:facet>
+											<h:inputText value="#{u.pais}" size="10"
+												rendered="#{u.editable}" />
+											<h:outputText value="#{u.pais}" rendered="#{not u.editable}" />
+										</h:column>
 										<h:column>
-											<f:facet name="header">Nombre</f:facet>
-											<h:inputText value="#{b.nombre}" size="10"
-												rendered="#{b.editable}" />
-											<h:outputText value="#{b.nombre}"
-												rendered="#{not b.editable}" />
+											<f:facet name="header">Provincia</f:facet>
+											<h:inputText value="#{u.provincia}" size="10"
+												rendered="#{u.editable}" />
+											<h:outputText value="#{u.provincia}"
+												rendered="#{not u.editable}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Ciudad</f:facet>
+											<h:inputText value="#{u.ciudad}" size="10"
+												rendered="#{u.editable}" />
+											<h:outputText value="#{u.ciudad}"
+												rendered="#{not u.editable}" />
 										</h:column>
 										<h:column>
 											<f:facet name="header">Accion</f:facet>
 											<h:commandLink value="Delete"
-												action="#{bodegaBean.delete(b)}" />
+												action="#{ubicacionBean.delete(u)}" />
 										</h:column>
 										<h:column>
 											<f:facet name="header">Accion</f:facet>
-											<h:commandLink value="Edit" action="#{bodegaBean.edit(b)}"
-												rendered="#{not b.editable}" />
-											<h:commandLink value="Save" action="#{bodegaBean.save(b)}"
-												rendered="#{b.editable}" />
+											<h:commandLink value="Edit" action="#{ubicacionBean.edit(u)}"
+												rendered="#{not u.editable}" />
+											<h:commandLink value="Save" action="#{ubicacionBean.save(u)}"
+												rendered="#{u.editable}" />
 										</h:column>
 									</h:dataTable>
 								</h:form>

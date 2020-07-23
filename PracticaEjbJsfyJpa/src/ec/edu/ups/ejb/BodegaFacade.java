@@ -37,4 +37,17 @@ public class BodegaFacade extends AbstractFacade<Bodega>{
 		return respuesta;
 	}
 
+	public Bodega nombreBodega(String bodega) {
+		Bodega cat = new Bodega();
+		try {
+			String sql = "SELECT b FROM Bodega b where b.nombre='" + bodega + "'";
+			System.out.println(sql);
+			Query query = em.createQuery(sql);
+			cat = (Bodega) query.getSingleResult();
+
+		} catch (Exception e) {
+			System.out.println("bodega" + e.getMessage());
+		}
+		return cat;
+	}
 }

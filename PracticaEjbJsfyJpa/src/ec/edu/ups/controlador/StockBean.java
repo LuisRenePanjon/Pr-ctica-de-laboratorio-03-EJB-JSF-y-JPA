@@ -48,7 +48,7 @@ public class StockBean implements Serializable {
 
 	@EJB
 	private BodegaFacade ejbBodegaFacade;
-	
+	private Bodega bo;
 	private List<Bodega> listBodega;
 	private Set<Bodega> listaBodegas = new HashSet<Bodega>();
 
@@ -191,10 +191,30 @@ public class StockBean implements Serializable {
 		return null;
 	}
 
+	public Bodega getBo() {
+		return bo;
+	}
+
+	public void setBo(Bodega bo) {
+		this.bo = bo;
+	}
+
 	public String save(Stock b) {
 		ejbStockFacade.edit(b);
 		b.setEditable(false);
 		return null;
+	}
+	
+	public Bodega bode() {
+		System.out.println(nombreB);
+		bo = ejbStockFacade.nombreBodega(nombreB);
+		System.out.println(bo);
+		return bo;
+	}
+	
+	public List<Stock> listado() {
+		list = ejbStockFacade.listaInventario(bode());
+		return list;
 	}
 
 }

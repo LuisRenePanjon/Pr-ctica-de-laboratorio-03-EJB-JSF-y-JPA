@@ -4,7 +4,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Productos</title>
+	<title>Productos listados por Bodega</title>
 	<style>
 .tabla {
 	border-collapse: collapse;
@@ -102,30 +102,6 @@
 
 		<div class="row">
 
-			<div class="col-lg-3">
-
-				<h1 class="my-4">Agregar Producto</h1>
-
-				<div class="list-group">
-					<h:form>
-						<ul>
-							<li>Nombre: <h:inputText size="15"
-									value="#{productoBean.nombre}" class="confondo" /></li>
-							<li>Categoria:<h:inputText size="10"
-									value="#{productoBean.categoria}" class="confondo" /></li>
-							<li>Precio:<h:inputText size="15"
-									value="#{productoBean.precio}" class="confondo" /></li>
-							<li>Precio Neto:<h:inputText size="15"
-									value="#{productoBean.precioNeto}" class="confondo" /></li>
-						</ul>
-
-						<h:commandButton value="Add" action="#{productoBean.add()}"
-							style='width: 100%; font-size: 24px; background-color: #70BF73;' />
-					</h:form>
-				</div>
-
-			</div>
-
 			<div class="col-lg-9">
 				<h:form>
 					<div class="limiter">
@@ -136,53 +112,34 @@
 									<h3 style='text-align: center;'>Producto</h3>
 									<br></br>
 
-									<h:dataTable value="#{productoBean.list}" var="c"
+									<h:dataTable value="#{stockBean.list}" var="p"
 										styleClass="tabla" headerClass="cabeceraTabla"
 										rowClasses="filaPar,filaImpar">
 										<h:column>
-											<f:facet name="header">Codigo</f:facet>#{c.codigo}</h:column>
-										<h:column>
 											<f:facet name="header">Nombre</f:facet>
-											<h:inputText value="#{c.nombre}" size="10"
-												rendered="#{c.editable}" />
-											<h:outputText value="#{c.nombre}"
-												rendered="#{not c.editable}" />
-										</h:column>
-										<h:column>
-											<f:facet name="header">Categoria</f:facet>
-											<h:inputText value="#{c.categoria}" size="10"
-												rendered="#{c.editable}" />
-											<h:outputText value="#{c.categoria}"
-												rendered="#{not c.editable}" />
-										</h:column>
-										<h:column>
-											<f:facet name="header">Precio</f:facet>
-											<h:inputText value="#{c.precio}" size="10"
-												rendered="#{c.editable}" />
-											<h:outputText value="#{c.precio}"
-												rendered="#{not c.editable}" />
-										</h:column>
-										<h:column>
-											<f:facet name="header">Precio Neto</f:facet>
-											<h:inputText value="#{c.precioNeto}" size="10"
-												rendered="#{c.editable}" />
-											<h:outputText value="#{c.precioNeto}"
-												rendered="#{not c.editable}" />
-										</h:column>
-										<h:column>
-											<f:facet name="header">Accion</f:facet>
-											<h:commandLink value="Delete"
-												action="#{productoBean.delete(c)}" />
-										</h:column>
-										<h:column>
-											<f:facet name="header">Accion</f:facet>
-											<h:commandLink value="Edit" action="#{productoBean.edit(c)}"
-												rendered="#{not c.editable}" />
-											<h:commandLink value="Save" action="#{productoBean.save(c)}"
-												rendered="#{c.editable}" />
-										</h:column>
 
+											<h:outputText value="#{p.getProducto().getNombre()}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Cantidad</f:facet>
+											<h:outputText value="#{p.getCantidad()}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Valor Unitario</f:facet>
+
+											<h:outputText value="#{p.getProducto().getPrecio()}" />
+										</h:column>
 									</h:dataTable>
+									<br></br>
+									<td>SELECCIONAR BODEGA <h:selectOneMenu
+											value="#{stockBean.nombreB}">
+											<f:selectItems value="#{bodegaBean.list}" var="list1"
+												itemValue="#{list1.nombre}" itemLabel="#{list1.nombre}" />
+										</h:selectOneMenu>
+									</td> 
+									<br></br>
+									<h:commandButton value="Buscar" action="#{stockBean.listado}"
+										type="submit" style='width: 100%; font-size: 24px; background-color: #70BF73;' />
 
 								</div>
 							</div>
@@ -194,11 +151,11 @@
 
 
 
-		</div>
-		<!-- /.col-lg-9 -->
+			</div>
+			<!-- /.col-lg-9 -->
 
-	</div>
-	<!-- /.row -->
+		</div>
+		<!-- /.row -->
 
 	</div>
 	<!-- /.container -->
